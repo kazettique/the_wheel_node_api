@@ -47,6 +47,24 @@ mysqlConnection.connect(err => {
     );
 });
 
+// 拿到所有會員資料
+router.get('/member', (req, res) => {
+  mysqlConnection.query('SELECT*FROM member', (err, rows, fields) => {
+
+      for (let s in rows) {
+          rows[s].m_birthday2 = moment(rows[s].m_birthday).format('YYYY-MM-DD');
+      }
+
+      if (!err)
+          res.send(rows)
+      else
+          console.log(err);
+  })
+});
+
+
+
+//拿到一個會員資料
 router.get("/member/:id", (req, res) => {
   mysqlConnection.query(
     "SELECT*FROM member WHERE m_sid = ?",
@@ -267,6 +285,8 @@ router.put("/member/:id", upload.single("avatar"), (req, res) => {
     mysqlConnection.query(sql, [body, req.params.id], (err, rows, fields) => {
       console.log(body);
 
+      if(rows){
+
       if (rows.changedRows == 0) {
         data.success = true;
         data.message.type = "warning";
@@ -282,6 +302,7 @@ router.put("/member/:id", upload.single("avatar"), (req, res) => {
         res.send(data);
         return;
       }
+    }
 
       if (err) {
         data.message.text = "E-mail重複使用,資料修改失敗";
