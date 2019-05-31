@@ -11,8 +11,8 @@ const router = express.Router();
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "clifford",
-    password: "12345",
+    user: "ivi",
+    password: "admin1123",
     database: "the_wheel"
 })
 
@@ -75,22 +75,174 @@ router.get('/route/:sid',(req,res)=>{
     )
     .then(results=>{
         output.comment=results
+        output.rsid
     })
     .then(obj=>res.json(output))
         .catch(e => res.send('Error----' + e))
 });
 
-router.get('/route/comment/:sid',(req,res)=>{
+router.get('/route/comment/:sid', (req, res) => {
     const output = {
     }
     let sql2 = "SELECT rc.`r_c_sid`, rc.`r_c`, m.`m_name`, m.`m_photo`, rc.`r_c_time`, a.`name` FROM`route_comment` AS rc LEFT JOIN `member` AS m ON m.`m_sid` = rc.`m_sid` LEFT JOIN`admin` AS a ON a.`id` = rc.`m_sid` LEFT JOIN`route`AS r ON r.`r_sid` = rc.`r_sid` WHERE r.`r_sid` = ?";
 
-  db.queryAsync(sql2,  req.params.sid)
-    .then(results=>{
-        output.comment=results
-    })
-    .then(obj=>res.json(output))
-    .catch(e => res.send('Error----' + e))
+        db.queryAsync(sql2, req.params.sid)
+        .then(results => {
+            output.comment = results
+            //console.log(output)
+        })
+        .then(obj => res.json(output))
+        .catch(e => res.json('Error----' + e))
+});
+
+router.post('/route/search', upload.none(),(req,res)=>{
+    console.log(req.body)
+    const output = {
+        errMsg: '路線不存在請搜尋其他路線',
+        page: 0,
+        aaa:0,
+        data:{}
+    }
+  
+    let sql= "SELECT * FROM `route`WHERE ";
+    let string;
+    let tag;
+    let country;
+    let area;
+    let str='';
+
+    if (req.body.r_search) { string = req.body.r_search.trim() } else {string=''};
+    if (req.body.r_tag) { tag = req.body.r_tag } else { tag = '' };
+    if (req.body.r_country) { country = req.body.r_country } else { country = '' }
+    if (req.body.r_area) { area = req.body.r_area } else { area = '' }
+
+    if (!string && !tag && !country){
+    output.errMsg = '未輸入關鍵字';
+    res.json(output)}
+
+
+    else if(string && !tag && !country){
+            output.aaa = '1';
+            searchtxt();
+    } else if( !string && tag && !country) {
+        output.aaa  = '2';
+        searchtag();
+    } else if( !string && !tag && country && !area) {
+        output.aaa  = '3';
+        searchcountry()
+    } else if(string && tag && !country){
+        output.aaa  = '4';
+        //search_txt_tag();
+        searchtag();
+        sql+=" AND ("
+        searchtxt();
+        sql += " )"
+    } else if(string && !tag && country && !area){
+        output.aaa  = '5';
+        //search_txt_country();
+        searchcountry()
+        sql += " AND ("
+        searchtxt();
+        sql += " )"
+
+    } else if(!string && !tag &&country &&area){
+        output.aaa  = '6';
+        //search_country_area();
+        searchcountry()
+        sql += " AND "
+        searcharea();
+    
+
+    } else if(string && !tag && country && area){
+        output.aaa  = '7';
+        //search_txt_country_area();
+        searchcountry()
+        sql += " AND "
+        searcharea();
+        sql += " AND ("
+        searchtxt();
+        sql += " )"
+
+    } else if(!string &&tag &&country && !area){
+        output.aaa  = '8';
+        //search_tag_country();
+        searchtag()
+        sql += " AND "
+        searchcountry()
+
+    } else if(!string &&tag &&country &&area){
+        output.aaa  = '9';
+        //search_tag_country_area();
+        searchtag()
+        sql += " AND "
+        searchcountry()
+        sql += " AND "
+        searcharea();
+
+    } else if(string &&tag &&country && !area){
+        output.aaa  = '10';
+        //search_txt_tag_country();
+        searchcountry()
+        sql += " AND "
+        searchtag()
+        sql += " AND ("
+        searchtxt();
+        sql += " )"
+
+    } else if(string && tag && country &&area){
+        output.aaa  = '11';
+        //search_txt_tag_country_area();
+        searchcountry()
+        sql += " AND "
+        searcharea();
+        sql += " AND "
+        searchtag()
+        sql += " AND ("
+        searchtxt();
+        sql += " )"
+
+
+    }
+    function searchtxt() {
+        let keys= string.split(' ')
+
+        sql += " `r_intro` LIKE '%" + string + "%' OR`r_name` LIKE '%" + string + "%' OR`r_country` LIKE '%" + string + "%' OR`r_area` LIKE '%" + string + "%' OR`r_depart` LIKE '%" + string + "%' OR`r_arrive` LIKE '%" + string + "%'";
+
+        keys.forEach(function (k) {
+            sql += " OR`r_intro`LIKE '%" + k + "%' OR`r_name` LIKE '%" + k + "%' OR`r_country` LIKE '%" + k + "%' OR`r_area` LIKE '%" + k + "%' OR`r_depart` LIKE '%" + k + "%' OR`r_arrive` LIKE '%" + k + "%'";
+        })
+       
+    }
+    function searchtag() {
+        sql += "`r_tag`='" + tag +"'";
+    }
+
+    function searchcountry() {
+        sql += "`r_country`= '" + country + "'";
+    }
+    function searcharea() {
+        sql += "`r_area`= '" + area + "'";
+    }
+console.log(output)
+console.log(sql)
+db.queryAsync(sql)
+.then(obj=>{
+    if(obj.length>0){
+        output.data = obj
+        output.errMsg = ''
+        res.json(output)
+    }else {
+        throw new Error('路線不存在請搜尋其他路線',)
+    }
+
+})
+.catch(e => {
+    output.errMsg=''+e;
+    res.json(output)
+})
+
+
+
 });
 //---------------------------------------------------------------Create-----------------------------------------------
 router.post('/route/list', upload.single('r_img'), (req,res)=>{
@@ -214,7 +366,7 @@ router.post('/route/comment',  upload.none(), (req,res)=>{
     const body = req.body;
     output.post= body;
     if (!body.r_sid || !body.m_sid || !body.r_c || !body.r_c_time) {
-        output.errMsg = '資料輸入不完整';
+        output.errMsg = '沒有輸入留言';
         res.send(output);
         return;
     }
@@ -225,18 +377,18 @@ router.post('/route/comment',  upload.none(), (req,res)=>{
     .then(r=>{
         if(r.affectedRows===1){
             output.success=true
-            output.rsid=body.r_sid
-            res.json(output)
+            output.rsid = body.r_sid
+            res.send(output)
         }
     })
     .catch(e=>{
         output.errMsg=e;
-        res.json(output)
+        res.send(output)
     })
 })
 
 //---------------------------------------------------------------Update-----------------------------------------------
-router.get('/route/edit/:sid',(req,res)=>{
+router.put('/route/edit/:sid',(req,res)=>{
     let output={};
 
     let sql = "SELECT * FROM `route` WHERE r_sid = ?";
@@ -380,6 +532,26 @@ router.put('/route/location/:sid', bodyParser.urlencoded({extended: false}), (re
     })
 })
 
+router.put('/routecollect',upload.none(),(req,res)=>{
+    let output={
+    }
+    console.log(req.body.arr)
+    console.log(req.body.m_sid)
+    sql = "UPDATE`member` SET`r_collection` = ? WHERE `m_sid`= ?"
+    db.queryAsync(sql, [req.body.arr, req.body.m_sid])
+    .then(obj => {
+        console.log(obj)
+        if (obj.affectedRows == 1) {
+            output.success = true;
+            res.send(result)    
+        }else {
+            throw new Error()
+        }
+    })
+    .catch(e => {
+    output.errMsg = '' + e;
+        res.send(output)})
+    })
 
 //---------------------------------------------------------------Delete-----------------------------------------------
 
@@ -448,5 +620,23 @@ router.delete('/route/comment/:sid',  (req, res)=>{
 })
 
 
+
+//拿到收藏路線
+router.post("/routeCollect",upload.none(), (req, res) => {
+    console.log('yes in')
+    //console.log(req.params)
+    console.log(req.body);
+    // const body = req.body;
+    // data.body = body;
+    if (req.body.m_sid) {
+        console.log(req.body.m_sid)
+        var sql = "SELECT `r_collection` FROM `member` WHERE `m_sid`=" + req.body.m_sid;
+        db.query(sql, (err, rows, fields) => {
+            if (!err) res.json(rows);
+            else console.log(err);
+        })
+    } else { console.log('eerror') };
+
+})
 
 module.exports = router;
