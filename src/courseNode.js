@@ -58,7 +58,7 @@ var mysqlConnection = mysql.createConnection({
 })
 
 mysqlConnection.connect(err => {
-  if (!err) console.log('DB connection succeeded')
+  if (!err) console.log('[courseNode] DB connection succeeded')
   else
     console.log(
       'DB connection failed \n Error:' + JSON.stringify(err, undefined, 2)
@@ -99,14 +99,6 @@ router.get('/course/:id', (req, res) => {
 })
 
 // 拿到條件過濾後的課程資料
-// not done
-// 時間範圍限定查詢：select * from `course` where `c_courseDate` BETWEEN '2019/08/01' AND '2019/08/31'
-// 地區範圍限定查詢：select * from `course` where `c_courseLocation`='台北市'
-// 難度範圍限定查詢：select * from `course` where `c_level`='入門'
-// 依照時間順序排列：select * from `course` order by `c_courseDate`
-// 依照地點排列：select * from `course` order by `c_courseLocation`
-// 以下暫時無法使用
-// 綜合搜尋：select * from `course` where `c_title` OR `c_subtitle` OR `c_intro` OR `c_coachName` OR `c_coachNationality` like '%史大巴%'
 router.post('/course/search', (req, res) => {
   console.log('/course/search')
   // 課程難度
@@ -121,7 +113,7 @@ router.post('/course/search', (req, res) => {
   // 若有其中一項搜尋條件：
   if (search_level || search_region || search_date || search_input) {
     let result_array = []
-    if(search_level) result_array.push(`c_level = '${search_level}'`)
+    if (search_level) result_array.push(`c_level = '${search_level}'`)
     if (search_region) result_array.push(`c_courseLocation ='${search_region}'`)
     if (search_date) {
       search_date = search_date.split('-')
@@ -129,14 +121,16 @@ router.post('/course/search', (req, res) => {
       let monthEnd = search_date[1]
       result_array.push(`c_endDate BETWEEN '${monthStart}' AND '${monthEnd}'`)
     }
-    if (search_input) result_array.push(`c_title LIKE '${search_input}' OR c_subtitle LIKE '${search_input}' OR c_intro LIKE '${search_input}' OR c_coachName LIKE '${search_input}' OR c_coachNationality LIKE '${search_input}'`)
+    if (search_input)
+      result_array.push(
+        `c_title LIKE '${search_input}' OR c_subtitle LIKE '${search_input}' OR c_intro LIKE '${search_input}' OR c_coachName LIKE '${search_input}' OR c_coachNationality LIKE '${search_input}'`
+      )
 
     // 將最終sql查找指令串接
     let result_command = result_array.join(' AND ')
 
     // 放入處理完的sql語法
     sql = `select * from course where ${result_command}`
-    
   } else {
     // 若沒有設定搜尋條件，則顯示所有資料
     sql = `SELECT * FROM course`
@@ -194,7 +188,7 @@ router.post('/course/dataUpdate/', (req, res) => {
   )
 })
 
-// 加入「收藏」狀態
+// 取得「收藏」狀態
 router.get('/collectionCourse', (req, res) => {
   console.log('enter /collectionCourse')
   // console.log('req.query: ' + req.query)
