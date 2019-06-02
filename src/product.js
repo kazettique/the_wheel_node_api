@@ -35,8 +35,8 @@ router.use(cors(corsOptions))
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'ivi',
-  password: 'admin1123',
+  user: 'root',
+  password: '',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -207,6 +207,7 @@ router.post("/collectionProduct",(req,res)=>{
                 }
             )
         }
+        
     })
 })
 router.get("/collection",(req,res)=>{
@@ -222,4 +223,39 @@ router.get("/collection",(req,res)=>{
   })
 })
 
+router.get("/comment",(req,res)=>{
+  let sid = req.query.sid;
+  // console.log(sid)
+  // let sid = 1
+   let sql =`SELECT pc.p_comment_sid, pc.p_comment, m.m_name FROM prouduct_comment AS pc LEFT JOIN member AS m ON m.m_sid = pc.m_sid LEFT JOIN prouduct AS p ON p.p_sid = pc.p_sid WHERE p.p_sid = '${sid}'`;
+    console.log(sql)
+   mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+    console.log(rows)
+  })
+})
+
+
+router.post('/NEWcomment',(req,res)=>{
+  let p_sid = req.body.p_sid
+  let m_sid = req.body.m_sid
+  let p_comment = req.body.p_comment
+  // let sql= `INSERT INTO prouduct_comment SET p_sid='${p_sid}' AND m_sid='${m_sid}' AND p_comment='${p_comment}'`;
+  let sql =`INSERT INTO prouduct_comment (p_sid, m_sid, p_comment) VALUES ('${p_sid}','${m_sid}','${p_comment}')`
+  console.log(req)
+  mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+  })
+})
+//
+//"SELECT rc.`r_c_sid`, rc.`r_c`, m.`m_name`, m.`m_photo`, rc.`r_c_time`, a.`name` FROM`route_comment` AS rc LEFT JOIN member AS m ON m.`m_sid` = rc.`m_sid` LEFT JOIN`admin` AS a ON a.`id` = rc.`m_sid` LEFT JOIN`route`AS r ON r.`r_sid` = rc.`r_sid` WHERE r.`r_sid` = ?";
+
+//rc 宣告留言那張表的稱
+//SELECT rc.`r_c_sid`, rc.`r_c`, m.`m_name`, m.`m_photo`, rc.`r_c_time`, a.`name` FROM`route_comment` AS rc
+//m是meber那張表
+//LEFT JOIN member AS m ON m.`m_sid` = rc.`m_sid`
+//r是路線那張表
+//LEFT JOIN`route`AS r ON r.`r_sid` = rc.`r_sid` WHERE r.`r_sid` = ?";
     module.exports = router
