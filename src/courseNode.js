@@ -53,8 +53,8 @@ router.use(
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'clifford',
-  password: '12345',
+  user: 'root',
+  password: '',
   database: 'the_wheel',
   multipleStatements: true,
 })

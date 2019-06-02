@@ -35,8 +35,8 @@ router.use(cors(corsOptions))
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '',
+  user: 'clifford',
+  password: '12345',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -227,7 +227,7 @@ router.get("/comment",(req,res)=>{
   let sid = req.query.sid;
   // console.log(sid)
   // let sid = 1
-   let sql =`SELECT pc.p_comment_sid, pc.p_comment, m.m_name FROM prouduct_comment AS pc LEFT JOIN member AS m ON m.m_sid = pc.m_sid LEFT JOIN prouduct AS p ON p.p_sid = pc.p_sid WHERE p.p_sid = '${sid}'`;
+   let sql =`SELECT pc.p_comment_sid, pc.p_comment, m.m_name, m.m_photo FROM prouduct_comment AS pc LEFT JOIN member AS m ON m.m_sid = pc.m_sid LEFT JOIN prouduct AS p ON p.p_sid = pc.p_sid WHERE p.p_sid = '${sid}'`;
     console.log(sql)
    mysqlConnection.query(sql, (err, rows, fields) => {
     if (!err) res.send(rows)
