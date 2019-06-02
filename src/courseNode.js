@@ -51,8 +51,8 @@ router.use(
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'clifford',
-  password: '12345',
+  user: 'root',
+  password: '',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -222,6 +222,47 @@ router.post('/collectionCourse_update', (req, res) => {
       }
     }
   )
+})
+
+// 讀取留言
+router.get('/courseComment', (req, res) => {
+  let sid = req.query.sid
+  let sql = `SELECT
+                cc.c_c_sid,
+                cc.c_comment,
+                m.m_name,
+                m.m_photo
+            FROM
+                course_comment AS cc
+                LEFT JOIN member AS m
+            ON
+                m.m_sid = cc.m_sid
+                LEFT JOIN course AS c
+            ON
+                c.c_sid = cc.c_sid
+            WHERE
+                c.c_sid = '${sid}'`
+
+  console.log(sql)
+  mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+    console.log(rows)
+  })
+})
+
+// 新增留言
+router.post('/NewCourseComment',(req,res)=>{
+  let c_sid = req.body.c_sid
+  let m_sid = req.body.m_sid
+  let c_comment = req.body.c_comment
+  let sql =`INSERT INTO course_comment (c_sid, m_sid, c_comment)
+  VALUES('${c_sid}','${m_sid}','${c_comment}')`
+  console.log(req)
+  mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+  })
 })
 
 module.exports = router

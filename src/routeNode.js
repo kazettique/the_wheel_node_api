@@ -11,8 +11,8 @@ const router = express.Router();
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "clifford",
-    password: "12345",
+    user: "root",
+    password: "",
     database: "the_wheel"
 })
 
@@ -50,6 +50,17 @@ router.get('/route/list', (req, res)=>{
     .then(results=>res.json(results))
     .catch(e=>res.send(e))
 });
+router.get('/route/list/popular', (req, res) => {
+
+    let page = req.query.page * 15
+
+    let sql = "SELECT r.*,m.`m_sid`,m.`m_photo`,m.`m_name` FROM `route`AS r INNER JOIN `member` AS m ON r.`m_sid` = m.`m_sid` ORDER BY r.`r_collect_num` DESC LIMIT " + page + " , 15";
+
+
+    db.queryAsync(sql)
+        .then(results => res.json(results))
+        .catch(e => res.send(e))
+})
 
 router.get('/route/:sid',(req,res)=>{
     const output = {
@@ -104,7 +115,7 @@ router.post('/route/search', upload.none(),(req,res)=>{
         data:{}
     }
   
-    let sql= "SELECT * FROM `route`WHERE ";
+    let sql= "SELECT * FROM `route` WHERE ";
     let string;
     let tag;
     let country;
@@ -223,6 +234,8 @@ router.post('/route/search', upload.none(),(req,res)=>{
     function searcharea() {
         sql += "`r_area`= '" + area + "'";
     }
+
+    sql += " ORDER BY `r_sid` DESC LIMIT " + (req.body.page*15) + " , 15"
 console.log(output)
 console.log(sql)
 db.queryAsync(sql)
@@ -246,6 +259,8 @@ db.queryAsync(sql)
 });
 //---------------------------------------------------------------Create-----------------------------------------------
 router.post('/route/list', upload.single('r_img'), (req,res)=>{
+    console.log(req.body)
+    console.log(req.file)
     let output = {
         success: false,
         errMsg: '',
@@ -543,7 +558,7 @@ router.put('/routecollect',upload.none(),(req,res)=>{
         console.log(obj)
         if (obj.affectedRows == 1) {
             output.success = true;
-            res.send(result)    
+            res.send(output)    
         }else {
             throw new Error()
         }
@@ -552,6 +567,27 @@ router.put('/routecollect',upload.none(),(req,res)=>{
     output.errMsg = '' + e;
         res.send(output)})
     })
+router.put('/routechallenge', upload.none(), (req, res) => {
+    console.log('in challenge')
+    let output = {
+    }
+    console.log(req.body.arr)
+    console.log(req.body.m_sid)
+    sql = "UPDATE`member` SET`r_challengeSuccess` = ? WHERE `m_sid`= ?"
+    db.queryAsync(sql, [req.body.arr, req.body.m_sid])
+        .then(obj => {
+            if (obj.affectedRows == 1) {
+                output.success = true;
+                res.send(output)
+            } else {
+                throw new Error()
+            }
+        })
+        .catch(e => {
+            output.errMsg = '' + e;
+            res.send(output)
+        })
+})
 
 //---------------------------------------------------------------Delete-----------------------------------------------
 
@@ -622,7 +658,7 @@ router.delete('/route/comment/:sid',  (req, res)=>{
 
 
 //拿到收藏路線
-router.post("/routeCollect",upload.none(), (req, res) => {
+router.post("/routeCollect", upload.none(), (req, res) => {
     console.log('yes in')
     //console.log(req.params)
     console.log(req.body);
@@ -630,13 +666,64 @@ router.post("/routeCollect",upload.none(), (req, res) => {
     // data.body = body;
     if (req.body.m_sid) {
         console.log(req.body.m_sid)
-        var sql = "SELECT `r_collection` FROM `member` WHERE `m_sid`=" + req.body.m_sid;
+        var sql = "SELECT `r_collection`,`r_challengeSuccess` FROM `member` WHERE `m_sid`=" + req.body.m_sid;
         db.query(sql, (err, rows, fields) => {
             if (!err) res.json(rows);
             else console.log(err);
         })
     } else { console.log('eerror') };
 
+})
+
+//route資料表管理收藏人數
+router.get("/route/collection/num/:instruction/:rsid", (req,res)=>{
+
+    let sql="SELECT `r_collect_num` FROM `route` WHERE `r_sid` = ?"
+    db.queryAsync(sql, req.params.rsid)
+    .then(r=>{  
+        let num = r[0].r_collect_num
+        if (req.params.instruction ==0){
+            num--
+        }else{
+           num++
+        }
+        return num})
+    .then(r=>{
+        console.log('--------------')
+        console.log(r)
+        let sql = "UPDATE `route` SET `r_collect_num`=? WHERE `r_sid`= ?"
+        db.queryAsync(sql, [r, req.params.rsid])
+        .then(r=>console.log("affectedRows"+r.affectedRows))
+    })
+    res.send('ok')
+})
+
+router.get("/route/challenge/num/:instruction/:rsid", (req, res) => {
+    // console.log('--------------')
+    // console.log(req.params.instruction)
+    // console.log(req.params.rsid)
+    // console.log('--------------')
+
+    let sql = "SELECT `r_challenge_num` FROM `route` WHERE `r_sid` = ?"
+    db.queryAsync(sql, req.params.rsid)
+        .then(r => {
+            //console.log(r[0].r_collect_num)  
+            let num = r[0].r_challenge_num
+            if (req.params.instruction == 0) {
+                num--
+            } else {
+                num++
+            }
+            return num
+        })
+        .then(r => {
+            console.log('--------------challenge')
+            console.log(r)
+            let sql = "UPDATE `route` SET `r_challenge_num`=? WHERE `r_sid`= ?"
+            db.queryAsync(sql, [r, req.params.rsid])
+                .then(r => console.log(r))
+        })
+    res.send('ok')
 })
 
 module.exports = router;
