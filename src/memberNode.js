@@ -33,8 +33,8 @@ router.use(cors(corsOptions));
 
 var mysqlConnection = mysql.createConnection({
   host: "localhost",
-  user: "ivi",
-  password: "admin1123",
+  user: "root",
+  password: "",
   database: "the_wheel",
   multipleStatements: true
 });
@@ -582,6 +582,51 @@ router.put("/sqlcollect", (req, res) => {
 });
 
 
+//拿到收藏的路線
+router.post("/myrouter", (req, res) => {
+  console.log(req.body.arr);
+  // const body = req.body;
+  // data.body = body;
+
+  if (req.body.arr.length > 0) {
+    var sql = "SELECT * FROM `route` WHERE ";
+    for (let i = 0; i < req.body.arr.length; i++) {
+      if (i === 0) {
+        sql += `r_sid = ` + req.body.arr[i];
+      } else {
+        sql += ` OR r_sid = ` + req.body.arr[i];
+      }
+    }
+    console.log(sql);
+
+    // res.send(sql);
+    mysqlConnection.query(sql, (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    });
+  } else {
+    res.send([]);
+  }
+});
+
+//更新收藏的路線
+router.put("/c_route", (req, res) => {
+  console.log(req.body);
+  const body = req.body;
+  // data.body = body;
+
+  var sql = "UPDATE `member` SET `r_collection`=? WHERE `m_sid`=?";
+  mysqlConnection.query(
+    sql,
+    [JSON.stringify(body.sid), body.user_id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+});
+
+
 //拿到收藏的商品
 router.post("/productsCollect", (req, res) => {
   console.log(req.body.arr);
@@ -626,6 +671,20 @@ router.put("/c_product", (req, res) => {
     }
   );
 });
+
+
+//取消訂單
+
+router.post("/cancelOrder",(req,res)=>{
+  mysqlConnection.query(
+    "DELETE FROM `orders` WHERE `orders`.`sid` = ?",
+    [req.body.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  )
+})
 
 
 module.exports = router;
