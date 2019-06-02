@@ -673,4 +673,18 @@ router.put("/c_product", (req, res) => {
 });
 
 
+//取消訂單
+
+router.post("/cancelOrder",(req,res)=>{
+  mysqlConnection.query(
+    "DELETE FROM `orders` WHERE `orders`.`sid` = ?",
+    [req.body.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  )
+})
+
+
 module.exports = router;
