@@ -58,7 +58,7 @@ var mysqlConnection = mysql.createConnection({
 })
 
 mysqlConnection.connect(err => {
-  if (!err) console.log('DB connection succeeded')
+  if (!err) console.log('[courseNode] DB connection succeeded')
   else
     console.log(
       'DB connection failed \n Error:' + JSON.stringify(err, undefined, 2)
@@ -67,6 +67,7 @@ mysqlConnection.connect(err => {
 
 // 拿到所有課程資料
 router.get('/course', (req, res) => {
+  console.log('/course')
   mysqlConnection.query('SELECT * FROM course', (err, rows, fields) => {
     for (let s in rows) {
       rows[s].c_courseDate = moment(rows[s].c_courseDate).format('YYYY-MM-DD')
@@ -81,6 +82,7 @@ router.get('/course', (req, res) => {
 
 // 拿到一個課程的資料
 router.get('/course/:id', (req, res) => {
+  console.log('/course/:id')
   mysqlConnection.query(
     'SELECT * FROM course WHERE c_sid = ?',
     [req.params.id],
@@ -97,15 +99,8 @@ router.get('/course/:id', (req, res) => {
 })
 
 // 拿到條件過濾後的課程資料
-// not done
-// 時間範圍限定查詢：select * from `course` where `c_courseDate` BETWEEN '2019/08/01' AND '2019/08/31'
-// 地區範圍限定查詢：select * from `course` where `c_courseLocation`='台北市'
-// 難度範圍限定查詢：select * from `course` where `c_level`='入門'
-// 依照時間順序排列：select * from `course` order by `c_courseDate`
-// 依照地點排列：select * from `course` order by `c_courseLocation`
-// 以下暫時無法使用
-// 綜合搜尋：select * from `course` where `c_title` OR `c_subtitle` OR `c_intro` OR `c_coachName` OR `c_coachNationality` like '%史大巴%'
 router.post('/course/search', (req, res) => {
+  console.log('/course/search')
   // 課程難度
   let search_level = req.body.search_level
   // 地區
@@ -115,42 +110,39 @@ router.post('/course/search', (req, res) => {
   // 搜尋關鍵字
   let search_input = req.body.search_input
 
-  let sql = `SELECT * FROM course`
-  if (
-    search_level === null &&
-    search_region === null &&
-    search_date === null &&
-    search_input === null
-  ) {
-    sql = `SELECT * FROM course`
-  }
-
+  // 若有其中一項搜尋條件：
   if (search_level || search_region || search_date || search_input) {
-    let condition_1 = ''
-    let condition_2 = ''
-    let condition_3 = ''
-    let condition_4 = ''
-
-    if (search_level) condition_1 = `c_level = '${search_level}'`
-    if (search_region) condition_2 = ` AND c_courseLocation ='${search_region}'`
+    let result_array = []
+    if (search_level) result_array.push(`c_level = '${search_level}'`)
+    if (search_region) result_array.push(`c_courseLocation ='${search_region}'`)
     if (search_date) {
       search_date = search_date.split('-')
       let monthStart = search_date[0]
       let monthEnd = search_date[1]
-      condition_3 = ` AND c_endDate BETWEEN '${monthStart}' AND '${monthEnd}'`
+      result_array.push(`c_endDate BETWEEN '${monthStart}' AND '${monthEnd}'`)
     }
     if (search_input)
-      condition_4 = ` AND c_title LIKE '${search_input}' OR c_subtitle LIKE '${search_input}' OR c_intro LIKE '${search_input}' OR c_coachName LIKE '${search_input}' OR c_coachNationality LIKE '${search_input}'`
+      result_array.push(
+        `c_title LIKE '${search_input}' OR c_subtitle LIKE '${search_input}' OR c_intro LIKE '${search_input}' OR c_coachName LIKE '${search_input}' OR c_coachNationality LIKE '${search_input}'`
+      )
 
     // 將最終sql查找指令串接
-    let result_command = condition_1 + condition_2 + condition_3 + condition_4
+    let result_command = result_array.join(' AND ')
 
     // 放入處理完的sql語法
     sql = `select * from course where ${result_command}`
+  } else {
+    // 若沒有設定搜尋條件，則顯示所有資料
+    sql = `SELECT * FROM course`
   }
+  console.log("the sql command is: '" + sql + "'")
 
   mysqlConnection.query(sql, (err, rows, fields) => {
-    console.log('connection:' + sql)
+    for (let s in rows) {
+      rows[s].c_courseDate = moment(rows[s].c_courseDate).format('YYYY-MM-DD')
+      rows[s].c_startDate = moment(rows[s].c_startDate).format('YYYY-MM-DD')
+      rows[s].c_endDate = moment(rows[s].c_endDate).format('YYYY-MM-DD')
+    }
     if (!err) res.send(rows)
     else console.log(err)
     console.log(res)
@@ -159,7 +151,7 @@ router.post('/course/search', (req, res) => {
 
 // 新增贊助訂單
 router.post('/course/backIt/:id', (req, res) => {
-  // console.log(req.body)
+  console.log('/course/backIt/:id')
   mysqlConnection.query(
     `INSERT INTO funding (m_sid, c_sid, payment_method, fund_price, backer_name, comment) VALUES ('${
       req.body.m_sid
@@ -170,7 +162,7 @@ router.post('/course/backIt/:id', (req, res) => {
       if (!error) {
         res.json({ success: true })
       } else {
-        console.log(error)
+        console.log('error: ' + error)
       }
     }
   )
@@ -180,7 +172,7 @@ router.post('/course/backIt/:id', (req, res) => {
 //（c_sid: 課程ID ,c_backers: 贊助人數; c_fundNow: 目前集資金額）
 // SQL Command Examples: UPDATE `course` SET `c_backers`=35 ,`c_fundNow`=3500 WHERE `c_sid`=?
 router.post('/course/dataUpdate/', (req, res) => {
-  console.log('line136:')
+  console.log('enter /course/dataUpdate/')
   console.log(req.body)
   mysqlConnection.query(
     `UPDATE course SET c_backers='${req.body.c_backers}' ,c_fundNow='${
@@ -196,9 +188,9 @@ router.post('/course/dataUpdate/', (req, res) => {
   )
 })
 
-// 加入「收藏」狀態
-router.get('/collection/', (req, res) => {
-  console.log('line202:')
+// 取得「收藏」狀態
+router.get('/collectionCourse', (req, res) => {
+  console.log('enter /collectionCourse')
   // console.log('req.query: ' + req.query)
   let sid = +req.query.sid
   mysqlConnection.query(
@@ -210,11 +202,13 @@ router.get('/collection/', (req, res) => {
 })
 
 // 更新「收藏」狀態
-router.post('/collection_update', (req, res) => {
-  console.log('line215:')
+router.post('/collectionCourse_update', (req, res) => {
+  console.log('/enter collection_update')
   // console.log(req.body)
-  let updatedCollection = req.body.collection
-  let sid = +req.body.sid
+  let updatedCollection = req.body.collectionCourse
+  let sid = req.body.sid
+  console.log('sid: ' + sid)
+  console.log('updatedCollection: ' + updatedCollection)
   mysqlConnection.query(
     `UPDATE member SET c_course='${updatedCollection}' WHERE m_sid = ${sid}`,
     (error, result) => {
