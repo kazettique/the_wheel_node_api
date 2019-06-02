@@ -11,8 +11,8 @@ const router = express.Router();
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "clifford",
-    password: "12345",
+    user: "root",
+    password: "",
     database: "the_wheel"
 })
 
