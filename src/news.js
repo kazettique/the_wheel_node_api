@@ -15,8 +15,8 @@ var connection = mysql.createConnection({
   // password: "iLoveayu1",
   // database: "mywheel"
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "clifford",
+  password: "12345",
   database: "the_wheel",
   multipleStatements: true
 });
