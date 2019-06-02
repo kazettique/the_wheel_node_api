@@ -224,4 +224,34 @@ router.post('/collectionCourse_update', (req, res) => {
   )
 })
 
+// 讀取留言
+router.get('/courseComment', (req, res) => {
+  let sid = req.query.sid
+  let sql = `SELECT
+                cc.c_c_sid,
+                cc.c_comment,
+                m.m_name,
+                m.m_photo
+            FROM
+                course_comment AS cc
+                LEFT JOIN member AS m
+            ON
+                m.m_sid = cc.m_sid
+                LEFT JOIN course AS c
+            ON
+                c.c_sid = cc.c_sid
+            WHERE
+                c.c_sid = '${sid}'`
+
+  console.log(sql)
+  mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+    console.log(rows)
+  })
+})
+
+
+// 新增留言
+
 module.exports = router
