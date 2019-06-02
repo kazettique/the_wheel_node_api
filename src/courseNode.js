@@ -251,7 +251,18 @@ router.get('/courseComment', (req, res) => {
   })
 })
 
-
 // 新增留言
+router.post('/NewCourseComment',(req,res)=>{
+  let c_sid = req.body.c_sid
+  let m_sid = req.body.m_sid
+  let c_comment = req.body.c_comment
+  let sql =`INSERT INTO course_comment (c_sid, m_sid, c_comment)
+  VALUES('${c_sid}','${m_sid}','${c_comment}')`
+  console.log(req)
+  mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+  })
+})
 
 module.exports = router
