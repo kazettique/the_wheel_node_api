@@ -686,5 +686,21 @@ router.post("/cancelOrder",(req,res)=>{
   )
 })
 
+//拿到會員商品的定單
+router.get('/orders/:id', (req, res) => {
+  mysqlConnection.query(
+    'SELECT * FROM orders WHERE id = ?',
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows)
+      else console.log(err)
+
+      // if (!err) res.send(rows)
+      // else console.log(err)
+    }
+  )
+})
+
+
 
 module.exports = router;
