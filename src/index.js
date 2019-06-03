@@ -54,16 +54,16 @@ app.use(
 
 var mysqlConnection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "wang",
+  password: "admin",
   database: "the_wheel",
   multipleStatements: true
 });
 // ++++++++++++++++++++++++++++++++++++++++++++++
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "wang",
+  password: "admin",
   database: "the_wheel",
   multipleStatements: true
 });

@@ -41,9 +41,9 @@ const upload = multer({dest:'tmp_uploads/'});
 router.get('/route/list', (req, res)=>{
     // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     // res.setHeader("Access-Control-Allow-Origin: *");
-    let page=req.query.page*15
+    let page=req.query.page*7
     // let sql = "SELECT * FROM `route` ORDER BY `route`.`r_sid` " + req.query.orderby +" LIMIT "+page+" , 15";
-    let sql= "SELECT r.*,m.`m_sid`,m.`m_photo`,m.`m_name` FROM `route`AS r INNER JOIN `member` AS m ON r.`m_sid` = m.`m_sid` ORDER BY r.`r_sid` " + req.query.orderby +" LIMIT "+page+" , 15";
+    let sql= "SELECT r.*,m.`m_sid`,m.`m_photo`,m.`m_name` FROM `route`AS r INNER JOIN `member` AS m ON r.`m_sid` = m.`m_sid` ORDER BY r.`r_sid` " + req.query.orderby +" LIMIT "+page+" , 7";
 
 
     db.queryAsync(sql)
@@ -52,9 +52,9 @@ router.get('/route/list', (req, res)=>{
 });
 router.get('/route/list/popular', (req, res) => {
 
-    let page = req.query.page * 15
+    let page = req.query.page * 7
 
-    let sql = "SELECT r.*,m.`m_sid`,m.`m_photo`,m.`m_name` FROM `route`AS r INNER JOIN `member` AS m ON r.`m_sid` = m.`m_sid` ORDER BY r.`r_collect_num` DESC LIMIT " + page + " , 15";
+    let sql = "SELECT r.*,m.`m_sid`,m.`m_photo`,m.`m_name` FROM `route`AS r INNER JOIN `member` AS m ON r.`m_sid` = m.`m_sid` ORDER BY r.`r_collect_num` DESC LIMIT " + page + " , 7";
 
 
     db.queryAsync(sql)
@@ -235,7 +235,7 @@ router.post('/route/search', upload.none(),(req,res)=>{
         sql += "`r_area`= '" + area + "'";
     }
 
-    sql += " ORDER BY `r_sid` DESC LIMIT " + (req.body.page*15) + " , 15"
+    sql += " ORDER BY `r_sid` DESC LIMIT " + (req.body.page*7) + " , 7"
 console.log(output)
 console.log(sql)
 db.queryAsync(sql)
@@ -298,6 +298,7 @@ router.post('/route/list', upload.single('r_img'), (req,res)=>{
     db.queryAsync(sql, body)
 
     .then(results=>{
+        let myUrl = "http://localhost:5000";
         if(results.affectedRows===1){
             if(img_name!==''){
                 fs.createReadStream(req.file.path).pipe(
@@ -306,6 +307,7 @@ router.post('/route/list', upload.single('r_img'), (req,res)=>{
             }
             output.success = true;
             output.thisRoute = results.insertId;
+            // output.thisRoute= `${myUrl}/r_upload_img/`+img_name
         }
     })
     .then(()=>res.json(output))
@@ -724,6 +726,18 @@ router.get("/route/challenge/num/:instruction/:rsid", (req, res) => {
                 .then(r => console.log(r))
         })
     res.send('ok')
+})
+
+
+router.get("/routecollectionnum/:rsid", (req,res)=>{
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!737")
+    let sql="SELECT `r_collect_num` FROM `route` WHERE `r_sid` = ?"
+    db.queryAsync(sql, req.params.rsid)
+    .then(r=>{  
+        //console.log(r[0].r_collect_num)
+        res.json( r[0].r_collect_num)
+    })
+
 })
 
 module.exports = router;
