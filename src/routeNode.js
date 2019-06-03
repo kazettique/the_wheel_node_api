@@ -298,6 +298,7 @@ router.post('/route/list', upload.single('r_img'), (req,res)=>{
     db.queryAsync(sql, body)
 
     .then(results=>{
+        let myUrl = "http://localhost:5000";
         if(results.affectedRows===1){
             if(img_name!==''){
                 fs.createReadStream(req.file.path).pipe(
@@ -306,6 +307,7 @@ router.post('/route/list', upload.single('r_img'), (req,res)=>{
             }
             output.success = true;
             output.thisRoute = results.insertId;
+            // output.thisRoute= `${myUrl}/r_upload_img/`+img_name
         }
     })
     .then(()=>res.json(output))

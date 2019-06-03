@@ -686,5 +686,33 @@ router.post("/cancelOrder",(req,res)=>{
   )
 })
 
+//會員發起的路線
+router.get('/routeRaise/:id', (req, res) => {
+  mysqlConnection.query(
+    'SELECT * FROM route WHERE m_sid = ?',
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows)
+      else console.log(err)
+
+      // if (!err) res.send(rows)
+      // else console.log(err)
+    }
+  )
+})
+
+
+router.post('/routeDelete', (req, res)=>{
+  mysqlConnection.query(
+    "DELETE FROM `route` WHERE `r_sid`=?",
+    [req.body.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  ) 
+})
+
+
 
 module.exports = router;
