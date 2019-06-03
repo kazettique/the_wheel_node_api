@@ -35,8 +35,8 @@ router.use(cors(corsOptions))
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'clifford',
-  password: '12345',
+  user: 'wang',
+  password: 'admin',
   database: 'the_wheel',
   multipleStatements: true,
 })
