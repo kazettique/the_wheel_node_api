@@ -686,10 +686,10 @@ router.post("/cancelOrder",(req,res)=>{
   )
 })
 
-//拿到會員商品的定單
-router.get('/orders/:id', (req, res) => {
+//會員發起的路線
+router.get('/routeRaise/:id', (req, res) => {
   mysqlConnection.query(
-    'SELECT * FROM orders WHERE id = ?',
+    'SELECT * FROM route WHERE m_sid = ?',
     [req.params.id],
     (err, rows, fields) => {
       if (!err) res.send(rows)
@@ -699,6 +699,18 @@ router.get('/orders/:id', (req, res) => {
       // else console.log(err)
     }
   )
+})
+
+
+router.post('/routeDelete', (req, res)=>{
+  mysqlConnection.query(
+    "DELETE FROM `route` WHERE `r_sid`=?",
+    [req.body.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  ) 
 })
 
 
