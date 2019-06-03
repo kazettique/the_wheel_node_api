@@ -269,21 +269,36 @@ router.post('/NewCourseComment', (req, res) => {
 
 // Fake Data Maker
 router.post('/fakeDataInsert', (req, res) => {
-  // for (let i = 0; i < 10; i++) {
   let result_array = []
   result_command = ''
-  for (let i = 0; i < 20; i++) {
-    let c_title = faker.name.title()
+  for (let i = 0; i < 30; i++) {
+    let c_title = faker.lorem.words()
     let c_subtitle = faker.lorem.words()
     let c_intro = faker.lorem.paragraphs()
-    let c_cover = faker.random.image()
-    // course level
-    let level_name = ['入門', '中級', '高級']
-    let c_level = level_name[Math.floor(Math.random() * 3)]
+    // let c_cover = faker.image.sports()
+    // generate course level
+    let levelArr = ['入門', '中級', '高級']
+    let c_level = levelArr[Math.floor(Math.random() * 3)]
     // let c_courseDate
-    // let c_courseLocation
+    // generate random location
+    let locationArr = [
+      '台北市',
+      '新北市',
+      '桃園市',
+      '台中市',
+      '彰化縣',
+      '台南市',
+      '高雄市',
+    ]
+    let c_courseLocation = locationArr[Math.floor(Math.random() * 7)]
     let c_coachName = `${faker.name.findName()}`
-    let c_coachAvatar = 'https://i.pravatar.cc/300'
+    // generate random gender
+    let genderArr = ['men', 'women']
+    let randomGender = Math.floor(Math.random() * 2)
+    let randomNumber = Math.floor(Math.random() * 99)
+    let c_coachAvatar = `https://randomuser.me/api/portraits/${
+      genderArr[randomGender]
+    }/${randomNumber}.jpg`
     let c_coachNationality = `${faker.address.country()}`
     let c_backers = Math.floor(Math.random() * 50)
     let c_fundNow = c_backers * 1000
@@ -292,19 +307,18 @@ router.post('/fakeDataInsert', (req, res) => {
       Math.random() * 30
     ) + 1}`
     result_array.push(
-      `('${c_title}', '${c_subtitle}', '${c_intro}', '${c_cover}', '${c_level}', '${c_coachName}',
+      `('${c_title}', '${c_subtitle}', '${c_intro}', '${c_level}', '${c_courseLocation}', '${c_coachName}',
     '${c_coachAvatar}', '${c_coachNationality}', '${c_backers}', '${c_fundNow}', '${c_fundGoal}', '${c_endDate}')`
     )
   }
   result_command = result_array.join(', ')
+  // console.log('result_command: ' + result_command)
   // console.log(sqlCommand)
   mysqlConnection.query(
     `INSERT INTO course
-      (c_title, c_subtitle, c_intro, c_cover, c_level, c_coachName,
+      (c_title, c_subtitle, c_intro, c_level, c_courseLocation, c_coachName,
         c_coachAvatar, c_coachNationality, c_backers, c_fundNow, c_fundGoal, c_endDate)
       VALUES ${result_command}`,
-    // ('${c_title}', '${c_subtitle}', '${c_intro}', '${c_cover}', '${c_level}', '${c_coachName}',
-    // '${c_coachAvatar}', '${c_coachNationality}', '${c_backers}', '${c_fundNow}', '${c_fundGoal}', '${c_endDate}')`,
     (error, result) => {
       if (!error) {
         res.json({ success: true })
@@ -314,4 +328,9 @@ router.post('/fakeDataInsert', (req, res) => {
     }
   )
 })
+
+// UPDATE `course` SET `c_cover`='123' WHERE `c_sid`=15;
+// UPDATE `course` SET `c_cover`='321' WHERE `c_sid`=14;
+// UPDATE `course` SET `c_cover`='224' WHERE `c_sid`=13;
+
 module.exports = router
