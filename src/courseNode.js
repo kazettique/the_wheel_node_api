@@ -267,7 +267,7 @@ router.post('/NewCourseComment', (req, res) => {
   })
 })
 
-// Fake Data Maker
+// Fake Data Generator
 router.post('/fakeDataInsert', (req, res) => {
   let result_array = []
   result_command = ''
@@ -328,6 +328,39 @@ router.post('/fakeDataInsert', (req, res) => {
     }
   )
 })
+
+// Fake Member Photo Generator
+router.post('/fakeMemberPhoto', (req, res) => {
+  let result_array = []
+  result_command = ''
+  for (let i = 0; i < 500; i++) {
+    let genderArr = ['men', 'women']
+    let randomGender = Math.floor(Math.random() * 2)
+    let randomNumber = Math.floor(Math.random() * 99)
+    let m_photo = `https://randomuser.me/api/portraits/${
+      genderArr[randomGender]
+    }/${randomNumber}.jpg`
+    
+    result_array.push(
+      `UPDATE member SET m_photo ='${m_photo}' WHERE m_sid=${i+1};`
+    )
+  }
+
+  result_command = result_array.join(' ')
+  // console.log('result: ' + result_command)
+  // `UPDATE member SET m_photo ='${m_photo}' WHERE m_sid=${i};`
+  mysqlConnection.query(
+    `${result_command}`,
+    (error, result) => {
+      if (!error) {
+        res.json({ success: true })
+      } else {
+        console.log('error: ' + error)
+      }
+    }
+  )
+})
+
 
 // UPDATE `course` SET `c_cover`='123' WHERE `c_sid`=15;
 // UPDATE `course` SET `c_cover`='321' WHERE `c_sid`=14;
