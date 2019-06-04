@@ -115,7 +115,7 @@ router.post('/route/search', upload.none(),(req,res)=>{
         data:{}
     }
   
-    let sql= "SELECT * FROM `route` WHERE ";
+    let sql= "SELECT r.*, m.`m_sid`, m.`m_photo`, m.`m_name` FROM  `route` AS r LEFT JOIN `member` AS m ON r.`m_sid` = m.`m_sid` WHERE ";
     let string;
     let tag;
     let country;
@@ -292,7 +292,7 @@ router.post('/route/list', upload.single('r_img'), (req,res)=>{
         img_name=uuidv4()+ext
     }
 
-    body.r_img = img_name;
+    body.r_img = "http://localhost:5000/r_upload_img/"+img_name;
 
     let sql = "INSERT INTO`route` SET ?";
     db.queryAsync(sql, body)
