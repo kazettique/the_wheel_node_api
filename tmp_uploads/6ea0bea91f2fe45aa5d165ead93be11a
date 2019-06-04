@@ -1,0 +1,28 @@
+ <RAlert />
+
+import RAlert from "../components/R_Alert/R_Alert";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {alertAppear} from "../actions";
+
+
+this.props.alertAppear(false, "ERROR MESSAGE")
+this.props.alertAppear(true, "SUCCESS MESSAGE")
+
+
+
+
+const mapStateToProps = state => ({
+  a: state.alertReducer
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+     { alertAppear },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(YOUR COMPONENT);
