@@ -1,0 +1,193 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- 主機: 127.0.0.1
+-- 產生時間： 2019 年 05 月 30 日 07:07
+-- 伺服器版本: 10.1.37-MariaDB
+-- PHP 版本： 7.1.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- 資料庫： `the_wheel`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `orders`
+--
+
+CREATE TABLE `orders` (
+  `sid` int(255) NOT NULL,
+  `id` int(255) NOT NULL,
+  `cart` varchar(12000) NOT NULL,
+  `pay` varchar(255) NOT NULL,
+  `delivery` varchar(255) NOT NULL,
+  `totalprice` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 資料表的匯出資料 `orders`
+--
+
+INSERT INTO `orders` (`sid`, `id`, `cart`, `pay`, `delivery`, `totalprice`) VALUES
+(1, 1, '', '', '', 0),
+(2, 1, '', '', '', 0),
+(6, 123, '123456', '信用卡', '宅配', 123),
+(15, 87, '[{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"2\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"3\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"12', '信用卡', 'undefined', 70000),
+(16, 87, '[{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"2\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"3\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"12', '', 'undefined', 70000),
+(17, 87, '[{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"1\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"1\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"2\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]}]', '', 'undefined', 20000),
+(18, 87, '[{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"1\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"1\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]},{\"p_sid\":68,\"p_photo\":\"[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]\",\"p_name\":\"捷安特公路車\",\"quantity\":\"2\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\",\"photos\":[\"https://i.imgur.com/3H64tkJ.png\",\"https://i.imgur.com/3H64tkJ.png\"]}]', '', 'undefined', 20000),
+(31, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 45000),
+(32, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 45000),
+(33, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 45000),
+(34, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 45000),
+(35, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 25000),
+(36, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 25000),
+(37, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 25000),
+(38, 90, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"5\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 25000),
+(39, 90, '[{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 100000),
+(40, 1, '[{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 120000),
+(41, 1, '[{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"},{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 120000),
+(42, 1, '[{\"p_sid\":85,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"4\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"公路車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 20000),
+(43, 1, '[]', '', 'undefined', 0),
+(44, 1, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"6\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 30000),
+(45, 1, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"6\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 30000),
+(46, 1, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"6\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 30000),
+(47, 1, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"6\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 30000),
+(48, 1, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"6\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 30000),
+(49, 1, '[{\"p_sid\":82,\"p_photo\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_2\":\"https://i.imgur.com/3H64tkJ.png\",\"p_photo_3\":\"\",\"p_name\":\"捷安特公路車\",\"quantity\":\"6\",\"p_description\":\"123132132132wqehqhuiehuihdusauid\",\"p_price\":\"5000\",\"p_genre\":\"特技車\",\"p_genre2\":\"全車\",\"p_brand\":\"捷安特\",\"p_color\":\"黑\",\"p_size\":\"成人\"}]', '', 'undefined', 30000),
+(50, 1, '[{\"p_sid\":1,\"p_photo\":\"	\r\nhttps://www.gearbike.com.tw/image/catalog/product/GEAR/GF5.0/GF5.0-Y1000.jpg\",\"p_photo2\":\"http://www.gearbike.com.tw/image/catalog/product/GEAR/GF5.0/GF5.0-01.jpg\",\"p_photo3\":\"http://www.gearbike.com.tw/image/catalog/product/GEAR/GF5.0/GF5.0-02.jpg\",\"p_name\":\"GEAR Fixed Gear單速車_GF5.0\",\"quantity\":\"4\",\"p_description\":\"GF5.0規格表\r\n\r\n顏 色：白紅/藍白/黑黃\r\n\r\n車 架：50cm輕量化高碳鋼\r\n前 叉：輕量化高碳鋼 \r\n車 手：鋁合金\r\n龍頭立管：鋁合金\r\n頭 碗 組：台灣大廠誌慶NECO\r\n鍊 條：台灣大廠桂盟KMC\r\n踏 板：鋁合金\r\n握 把 套：軟顆粒防滑表面+超質感鋁合金框\r\n煞 車：前C型煞車 鋁合金 PROMAX\r\n煞 把：鋁合金 PROMAX\r\n大 齒 盤：44T\r\n曲 柄：鋁合金\",\"p_description2\":\"飛 輪：16T兩用型，死齒(可往後騎)活齒(腳踏後踩空轉)\r\n輪 圈：40mm雙層鋁合金陽極板輪\r\n花 鼓：鋁合金陽極花鼓，前輪快拆\r\n外 胎：台灣大廠建大700*23C跑車胎\r\n內 胎：台灣大廠建大，法嘴 \r\n坐 墊：Fixed Gear潮流漆皮坐墊\r\n坐 管：25.4mm鋁合金\r\n附贈工具：15號扳手(鎖踏板)，4號5號內六角扳手(鎖龍頭和頭碗)\r\n其 它\r\n參考尺寸：車長約159cm x 手把寬約53cm\r\n外箱尺寸：約長120cm x 寬20cm x 高71cm\r\n製造產地：台灣設計中國代工台灣品\",\"p_price\":\"4990\",\"p_genre\":\"單速車\",\"p_genre2\":\"全車\",\"p_brand\":\"GEAR\",\"p_color\":\"黑黃\",\"p_size\":\"適合身高：約160 ~ 180公分\"}]', '', 'undefined', 49960);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `prouduct`
+--
+
+CREATE TABLE `prouduct` (
+  `p_sid` int(11) NOT NULL COMMENT '商品流水號',
+  `p_photo` varchar(255) NOT NULL COMMENT '商品照片',
+  `p_photo2` varchar(255) NOT NULL,
+  `p_photo3` varchar(255) NOT NULL,
+  `p_name` varchar(255) NOT NULL COMMENT '商品名稱',
+  `quantity` varchar(255) NOT NULL COMMENT '數量',
+  `p_description` longtext NOT NULL COMMENT '說明',
+  `p_description2` longtext NOT NULL,
+  `p_price` varchar(255) NOT NULL COMMENT '價格',
+  `p_genre` varchar(255) NOT NULL COMMENT '商品類別',
+  `p_genre2` varchar(255) NOT NULL COMMENT '商品部件',
+  `p_brand` varchar(255) NOT NULL COMMENT '品牌',
+  `p_color` varchar(255) NOT NULL COMMENT '顏色',
+  `p_size` varchar(255) NOT NULL COMMENT '尺寸'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 資料表的匯出資料 `prouduct`
+--
+
+INSERT INTO `prouduct` (`p_sid`, `p_photo`, `p_photo2`, `p_photo3`, `p_name`, `quantity`, `p_description`, `p_description2`, `p_price`, `p_genre`, `p_genre2`, `p_brand`, `p_color`, `p_size`) VALUES
+(1, '	\r\nhttps://www.gearbike.com.tw/image/catalog/product/GEAR/GF5.0/GF5.0-Y1000.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/GF5.0/GF5.0-01.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/GF5.0/GF5.0-02.jpg', 'GEAR Fixed Gear單速車_GF5.0', '1', 'GF5.0規格表\r\n\r\n顏 色：白紅/藍白/黑黃\r\n\r\n車 架：50cm輕量化高碳鋼\r\n前 叉：輕量化高碳鋼 \r\n車 手：鋁合金\r\n龍頭立管：鋁合金\r\n頭 碗 組：台灣大廠誌慶NECO\r\n鍊 條：台灣大廠桂盟KMC\r\n踏 板：鋁合金\r\n握 把 套：軟顆粒防滑表面+超質感鋁合金框\r\n煞 車：前C型煞車 鋁合金 PROMAX\r\n煞 把：鋁合金 PROMAX\r\n大 齒 盤：44T\r\n曲 柄：鋁合金', '飛 輪：16T兩用型，死齒(可往後騎)活齒(腳踏後踩空轉)\r\n輪 圈：40mm雙層鋁合金陽極板輪\r\n花 鼓：鋁合金陽極花鼓，前輪快拆\r\n外 胎：台灣大廠建大700*23C跑車胎\r\n內 胎：台灣大廠建大，法嘴 \r\n坐 墊：Fixed Gear潮流漆皮坐墊\r\n坐 管：25.4mm鋁合金\r\n附贈工具：15號扳手(鎖踏板)，4號5號內六角扳手(鎖龍頭和頭碗)\r\n其 它\r\n參考尺寸：車長約159cm x 手把寬約53cm\r\n外箱尺寸：約長120cm x 寬20cm x 高71cm\r\n製造產地：台灣設計中國代工台灣品', '4990', '單速車', '全車', 'GEAR', '黑黃', '適合身高：約160 ~ 180公分'),
+(2, '	\r\nhttps://www.gearbike.com.tw/image/catalog/product/GEAR/GF1.0/GF1_WR1000.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/GF1.0/GF1.0-06.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/GF1.0/GF1.0-08.jpg', 'GEAR Fixed Gear單速車_GF1.0', '1', 'GF1.0規格表\r\n\r\n顏 色：白藍/黑紅/紅白\r\n\r\n車 架：50cm輕量化高碳鋼\r\n前 叉：輕量化高碳鋼\r\n車 手：鋁合金\r\n龍頭立管：鋁合金\r\n握 把 套：軟顆粒防滑表面+超質感鋁合金框\r\n煞 車：前C型煞車 鋁合金\r\n煞 把：鋁合金\r\n大 齒 盤：44T\r\n曲 柄：鋁合金\r\n飛 輪：16T兩用型，死齒(銀色.可往後騎)活齒(銅色.腳踏後踩空轉)\r\n踏 板：半鋁合金\r\n輪 圈：40mm雙層鋁合金陽極板輪\r\n花 鼓：鋁合金陽極花鼓', '外 胎：建大700*23C跑車胎\r\n內 胎：建大 法嘴\r\n坐 墊：Fixed Gear專用跑車坐墊\r\n坐 管：25.4mm鋁合金\r\n其 它\r\n參考尺寸：車長約159cm x 手把寬約53cm\r\n外箱尺寸：約長129cm x 寬18cm x 高70cm\r\n製造產地：台灣設計中國代工台灣品管\r\n參考重量：約11kg \r\n建議載重：95kg以下\r\n坐墊離地：最高約97cm最低約85cm\r\n適合身高：約160 ~ 180公分\r\n保固範圍：車架一年、零件半年、消耗品不在保固範圍內\r\n貼心提醒：可加價購專用加粗版腳架', '4990', '單速車', '全車', 'GEAR', '紅白', '適合身高：約160 ~ 180公分'),
+(135, '	\r\nhttps://www.gearbike.com.tw/image/catalog/product/GEAR/MF1/MF1-G1000.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/MF1/MF1-01.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/MF1/MF1-02.jpg', 'GEAR Mini Fixed Gear迷你單速車MF1	', '1', 'MF1規格表\r\n\r\n顏 色：薄荷綠/螢光黃/蜜桃粉\r\n\r\n車 架：輕量化高碳鋼\r\n前 叉：輕量化高碳鋼\r\n車 手：鋁合金\r\n龍頭立管：鋁合金\r\n頭 碗 組：台灣大廠誌慶NECO\r\n大 齒 盤：台灣大廠浩盟Prowheel陽極鋁合金大盤46T\r\n曲 柄：台灣大廠浩盟Prowheel陽極鋁合金\r\n鍊 條：台灣大廠桂盟KMC\r\n踏 板：台灣大廠維格Wellgo鋁合金踏板\r\n外 胎：台灣大廠建大20吋*1-1/8跑車胎\r\n內 胎：台灣大廠建大，法嘴 \r\n握 把 套：軟顆粒防滑表面+超質感鋁合金框\r\n煞 車：彰星Z', '輪 圈：40mm雙層鋁合金陽極板輪\r\n花 鼓：鋁合金陽極花鼓，前輪快拆\r\n坐 墊：Fixed Gear潮流漆皮坐墊\r\n坐 管：25.4mm鋁合金\r\n附贈工具：15號扳手(鎖踏板)，4號5號內六角扳手(鎖龍頭和頭碗)\r\n其 它\r\n參考尺寸：\r\n外箱尺寸：約長117cm x 寬20cm x 高66cm\r\n製造產地：台灣設計中國代工台灣品管\r\n參考重量：約9.8kg(不含踏板煞車) \r\n建議載重：95kg以下\r\n坐墊離地：\r\n適合身高：約150 ~ 170公分(超過170需自行加裝龍頭增高器)\r\n保固範圍：車架', '4990', '單速車	', '全車', 'GEAR', '薄荷綠', '適合身高：約150 ~ 170公分'),
+(137, 'https://www.gearbike.com.tw/image/catalog/product/GEAR/MF2/MF2-R1000.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/MF2/MF2-01.jpg', 'http://www.gearbike.com.tw/image/catalog/product/GEAR/MF2/MF2-02.jpg', 'GEAR Mini Fixed Gear 20吋迷你單速車_MF2', '1', 'MF2規格表\r\n\r\n顏 色：雪山白/消光黑/山茶紅\r\n\r\n車 架：輕量化高碳鋼\r\n前 叉：輕量化高碳鋼\r\n車 手：鋁合金\r\n龍頭立管：鋁合金\r\n頭 碗 組：台灣大廠誌慶NECO\r\n大 齒 盤：台灣大廠浩盟Prowheel陽極鋁合金大盤46T\r\n曲 柄：台灣大廠浩盟Prowheel陽極鋁合金\r\n鍊 條：台灣大廠桂盟KMC\r\n踏 板：台灣大廠維格Wellgo鋁合金踏板\r\n外 胎：台灣大廠建大20吋*1-1/8跑車胎\r\n內 胎：台灣大廠建大，法嘴 \r\n握 把 套：軟顆粒防滑表面+超質感鋁合金框\r\n煞 車：台灣大', '輪 圈：40mm雙層鋁合金陽極板輪\r\n花 鼓：鋁合金陽極花鼓，前輪快拆\r\n坐 墊：Fixed Gear潮流漆皮坐墊\r\n坐 管：25.4mm鋁合金\r\n附贈工具：15號扳手(鎖踏板)，4號5號內六角扳手(鎖龍頭和頭碗)\r\n其它\r\n外箱尺寸：約長117cm x 寬20cm x 高66cm\r\n製造產地：台灣設計中國代工台灣品管\r\n參考重量：約9.8kg(不含踏板煞車) \r\n建議載重：95kg以下\r\n適合身高：約150 ~ 170公分(超過170需自行加裝龍頭增高器)\r\n保固範圍：車架一年、零件半年、消耗品不在保固', '4990', '單速車', '全車', 'GEAR', '山茶紅	\r\n', '適合身高：約150 ~ 170公分'),
+(138, 'http://www.fujibikes.com.tw/upload/product/2019-01-16_3744107.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_1445713.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_1326751.jpg?width=777&height=515', 'SL 2.3 DISC', '1', 'SL 2.3 DISC規格表\r\n\r\n顏 色：白/黑\r\n\r\n車 架：C10 高模組輕量化碳纖維車架,隱藏式頭管,PF30五通系統,強化下叉,12mmThru-Axle/QR快拆可轉換勾爪設計\r\n車 手：Oval Concepts 310人體工學,6061鋁合金,31.8mm\r\n龍頭立管：Oval Concepts 313,3D鍛造,鋁合金\r\n頭 碗 組：FSA 1-1/8 - 1-1/2\"隱藏式頭碗\r\n變速系統：Shimano Ultegra R8000\r\n飛 輪：Shimano 105,11-30t,11', '前叉:FC-440一體成形碳纖,椎形豎管,12mmThru-Alex快拆\r\n曲柄:Shimano Ultegra  R8000,52-36T\r\nBB:Praxis 轉換式BB,PF30 for Shimano\r\n前變速器:Shimano Ultegra  R8000\r\n後變速器:Shimano Ultegra  R8000\r\n輪胎:Vittoria Zaffiro Pro 700x25mm', '79800', '公路車', '全車', 'FUJI', '橘黑', '適合身高：約165~180公分'),
+(139, 'http://www.fujibikes.com.tw/upload/product/2019-01-16_0705462.jpg?width=777&height=515\r\n', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_5872929.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_4844299.jpg?width=777&height=515', 'TRANSONIC 2.5 LE 藍 ', '1', 'TRANSONIC 2.5 LE\r\n\r\n顏 色：藍\r\n\r\n車 架：C5 高模組輕量化碳纖維車架,隱藏式頭管,PF30五通系統,強化下叉,可替換式吊耳\r\n車 手：Oval Concepts 310人體工學,6061鋁合金,31.8mm\r\n龍頭立管：Oval Concepts 313,3D鍛造,鋁合金\r\n頭 碗 組：FSA 1-1/8 - 1-1/2\"隱藏式頭碗\r\n變速系統：Shimano Ultegra R7000\r\n飛 輪：Shimano 105,11-32t,11s', '前叉:FC-440碳纖空氣力學前叉\r\n曲柄:Shimano 105 R7000,50-34T\r\nBB:Praxis 轉換式BB,PF30 for Shimano\r\n前變速器:Shimano 105  R7000\r\n後變速器:Shimano 105  R7000\r\n輪胎:Vittoria Zaffiro Pro 700x25mm', '50800', '公路車', '全車', 'FUJI', '藍', '適合身高：約165~180公分'),
+(140, 'http://www.fujibikes.com.tw/upload/product/2019-01-16_0359443.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_2972327.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_8672075.jpg?width=777&height=515', 'SPORTIF 2.3', '1', 'SPORTIF 2.3規格表\r\n\r\n顏 色：紅\r\n\r\n車 架：A2輕量化鋁合金,異形減震設計後三角,鍛造勾爪,可替換吊耳,預留貨架,泥除鎖孔\r\n車 手：Oval Concepts 300S,6061鋁合金,31.8mm\r\n龍頭立管：Oval Concepts 313,3D鍛造6061鋁合金\r\n頭 碗 組：FSA 1-1/8隱藏式頭碗\r\n變速系統：Shimano Ultegra R7000\r\n飛 輪：Shimano HG31,11-34T,8-speed\r\n座墊:Oval Concepts 344\r\n座管:Oval Concepts 300', '前叉:FC-770碳纖前叉,1 1/8\"鋁合金豎管\r\n\r\n曲柄:Shimano FC-RS200, 50/34T\r\n\r\nBB:FSA密封卡式培林\r\n\r\n前變速器:Shimano Claris\r\n\r\n後變速器:Shimano Claris,8-speed\r\n\r\n輪胎:Vittoria Zaffiro 700x30c\r\n\r\n剎車:鋁合金雙樞軸夾器\r\n\r\n煞把:Shimano  Claris,STI', '15800', '公路車', '全車', 'FUJI', '紅', '適合身高：約165~180公分'),
+(141, 'http://www.fujibikes.com.tw/upload/product/2019-01-16_0131810.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_3842636.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-16_2786787.jpg?width=777&height=515', 'ROUBAIX 1.5 LE 淺灰', '1', 'ROUBAIX 1.5 LE規格表\r\n\r\n顏 色：淺灰\r\n\r\n車 架：A2輕量化鋁合金,異形減震設計後三角,鍛造勾爪,可替換吊耳,預留貨架,泥除鎖孔\r\n車 手：Oval Concepts 300S,6061鋁合金,31.8mm\r\n龍頭立管：Oval Concepts 313,3D鍛造6061鋁合金\r\n頭 碗 組：FSA 1-1/8隱藏式頭碗\r\n\r\n飛 輪：Shimano HG31,11-34T,8-speed\r\n座墊:Oval Concepts 344\r\n座管:Oval Concepts 300', '前叉:FC-770碳纖前叉,1 1/8\"鋁合金豎管\r\n\r\n曲柄:Shimano FC-RS200, 50/34T\r\n\r\nBB:FSA密封卡式培林\r\n\r\n前變速器:Shimano Claris\r\n\r\n後變速器:Shimano Claris,8-speed\r\n\r\n輪胎:Vittoria Zaffiro 700x30c\r\n\r\n剎車:鋁合金雙樞軸夾器\r\n\r\n煞把:Shimano  Claris,STI\r\n\r\n把套:Oval Concepts 300,6061鋁合金,27.2mm', '33800', '公路車', '全車', 'FUJI', '灰', '適合身高：約165~180公分'),
+(142, 'http://www.fujibikes.com.tw/upload/product/2019-01-11_7505741.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-11_4120416.jpg?width=777&height=515', 'http://www.fujibikes.com.tw/upload/product_pic/2019-01-11_9511474.jpg?width=777&height=515', 'BREVET 1.5 DISC', '1', 'BREVET 1.5 DISC規格表\r\n\r\n顏 色：藍\r\n\r\n車 架：C10高模組碳纖,VRTech減震設計車架,傳動測強化後下叉,12mm快拆可轉換勾爪設計\r\n\r\n車 手：Oval Concepts 310人體工學設計\r\n龍頭立管：Oval Concepts 313,3D鍛造6061鋁合金\r\n頭 碗 組：FSA 1-1/8\" - 1 1/2\"隱藏式頭碗\r\n\r\n飛 輪：Shimano HG-700,11-34T\r\n座墊:Oval Concepts 351W,Cromo rail\r\n座管:Oval Concepts 905碳纖座管,27.2mm', '前叉:FC-440一體成形碳纖,VRTech減震設計前叉\r\n\r\n曲柄:Oval Concepts 300,60660鍛造腿組,50/34T\r\n\r\nBB:Praxis轉換式BB,PF30 for Shimano\r\n\r\n前變速器:Shimano 105\r\n\r\n後變速器:Shimano 105,11-speed\r\n\r\n輪胎:Vittoria Zaffiro Pro,700x30,60tpi,folding\r\n\r\n剎車:Shimano 105 Hydraulic,160mm rotors\r\n\r\n煞把:Shimano 105 Hydraulic\r\n\r\n把套:Anti-Silp Silicone', '55800', '公路車', '全車', 'FUJI', '藍', '適合身高：約165~180公分'),
+(143, 'https://images2.imgbox.com/5b/68/PDtRtATk_o.jpg', 'http://sawarchitecture.com/wp-content/uploads/2018/12/bmx-bike-for-sale-beautiful-grenade-launch-x-bmx-bike-of-bmx-bike-for-sale.jpg', 'https://s.yimg.com/xd/api/res/1.2/SIZe_JwVxxMiBXaBvp7W3Q--/YXBwaWQ9eXR3YXVjdGlvbnNlcnZpY2U7aD0zMDY7cT04NTtyb3RhdGU9YXV0bzt3PTQwMA--/https://s.yimg.com/ob/image/fab692df-197e-4811-84f9-73df850a1617.jpg', 'I.H BMX KINK GAP BMX  特技腳踏車', '1', '車架材質：100% 4130 Chromoly HT, TT and DT \r\n上管長度：20.5吋\r\n前叉：Kink Stryker 100％ 4130 鉻鉬鋼束管 前叉腿抽管設計\r\n手把：Kink Grizzly CC 9吋 100％ 4130 鉻鉬鋼\r\n手握：Kink Ace 無耳手握\r\n握把塞：Kink Thrust 握把塞\r\n龍頭：Kink Bold HRD 50mm\r\n頭碗：Mission Sealed Integrated (41.8 x 45)\r\n煞車把：Mission Token\r\n煞車線：Mission L3 Linear\r\n煞車器：Mission Cease V2\r\n曲柄：Kink Ridge 3pc Tubular 鉻鉬鋼 170mm – 8 Spline\r\nB B：Sealed Mid 19mm\r\n踏板：Kink Hemlock 塑膠踏板', '鏈條：Mission 410\r\n前齒盤：Mission Rank 25T\r\n前花鼓：Mission Covert Unsealed 3/8″ Axle\r\n後花鼓：Mission Engage Sealed Cassette 14mm\r\n後齒輪：Sealed 9T \r\n前輪圈：Mission X7 36H\r\n後輪圈：Mission X7 36H\r\n座椅：Kink Marion Stealth\r\n座管：Mission Stealth\r\n座管束：Mission Slim\r\n前輪胎：Kink Sever 2.4\"\r\n後輪胎：Kink Sever 2.4\"\r\n重量：26磅13盎司', '13200', '特技車', '全車', 'KINK CURB ', '褐色', '適合身高：約165~180公分'),
+(144, 'https://images2.imgbox.com/29/a1/S17bAL4Y_o.jpg', 'https://img.ruten.com.tw/s1/6/ce/7b/21719268809339_767.jpg', 'https://s.yimg.com/xd/api/res/1.2/LSl8MCiL2ZmRzWmNJjrgbA--/YXBwaWQ9eXR3YXVjdGlvbnNlcnZpY2U7aD0yNjc7cT04NTtyb3RhdGU9YXV0bzt3PTQwMA--/https://s.yimg.com/ob/image/0410cd8f-11a1-44d9-8b01-388fc6f4e485.jpg', 'I.H BMX KINK CURB BMX  特技腳踏車', '1', '車架材質：100％高張力鋼\r\n上管長度：20“\r\n前叉:Kink Lance 100％高張力鋼\r\n手把：Kink Human CC 8.75“100％高張力鋼\r\n手握： Kink Paragon Flangless\r\n握把塞：Kink Thrust\r\n龍頭： Mission Control TL 50mm\r\n頭碗：Standard 1 1/8″ Threadless\r\n煞車把：Mission Token\r\n煞車線：Mission L3 Linear\r\n煞車器： Mission Cease\r\n曲柄：Mission 3PC 管狀鉻鉬鋼 170MM - 8齒條\r\nBB:Unsealed American 19mm\r\n踏板：Kink Hemlock 塑膠踏板\r\n鏈條： Mission 410', '前齒盤：Mission Rank 25T\r\n前花鼓：Mission Access Unsealed 3/8″ Axle\r\n後花鼓：Mission Function Semi-Sealed Cassette 14mm\r\n後齒輪：9T\r\n前輪圈：Mission X7 36H\r\n後輪圈：Mission X7 36H\r\n座椅： Mission Goodman Combo\r\n座管：Mission Combo Steel Post\r\n座管束： Mission Slim\r\n前輪胎：Innova 2.4\"\r\n後輪胎：Innova 2.4\"\r\n重量：27磅7盎司', '9700', '特技車', '全車', 'KINK CURB ', '黑', '適合身高：約165~180公分'),
+(145, 'https://images2.imgbox.com/bb/4c/3Zk1sw56_o.jpg', 'https://i.imgur.com/jnVYwwB.jpg', 'https://i.imgur.com/op9JQn1.jpg', 'I.H BMX KINK LAUNCH BMX 街道車', '1', '車架材質：100％高張力鋼\r\n上管長度：20.25“\r\n前叉：Kink Stryker100％ 4130 鉻鉬鋼束管\r\n前叉腿抽管設計\r\n手把：Kink Human CC 8.75吋 100％高張力鋼\r\n手握：Kink Paragon Flangeless\r\n握把塞：Kink Thrust\r\n龍頭：Kink Bold HRD 50mm\r\n頭碗：Mission Sealed Integrated(41.8 x 45)\r\n煞車把：Mission Token\r\n煞車線：Mission L3 Linear\r\n剎車器：Mission Cease V2\r\n曲柄：Mission Triumph 3pc Tubular Chromoly 170mm – 8 Spline\r\nB B：Sealed Mid 19mm', '踏板：Kink Hemlock 塑膠踏板\r\n鏈條：Mission 410\r\n前齒盤：Mission Rank 25T\r\n前花鼓：Mission Echo Unsealed 3/8″ Axle\r\n後花鼓：Mission Function Semi-Sealed Cassette 14mm\r\n後齒輪：9T\r\n前輪圈：Mission X7 36H\r\n後輪圈：Mission X7 36H\r\n座椅：Mission Goodman Combo\r\n座管：Mission Combo Steel Post\r\n座管束：Mission Slim\r\n前輪胎：Kink Sever 2.4\"\r\n後輪胎：Kink Sever 2.4\"\r\n重量：26磅6盎司', '10800', '特技車', '全車', 'KINK CURB ', '金屬灰', '適合身高：約165~180公分'),
+(146, 'https://images2.imgbox.com/10/ff/dyno8bM2_o.jpg', 'https://i.imgur.com/6tbyp5o.jpg', 'https://i.imgur.com/ND2gYfK.jpg', 'KINK LAUNCH BMX 特技腳踏車', '1', '車架材質：100％高張力鋼\r\n上管長度：20.25“\r\n前叉：Kink Stryker100％ 4130 鉻鉬鋼束管\r\n前叉腿抽管設計\r\n手把：Kink Human CC 8.75吋 100％高張力鋼\r\n手握：Kink Paragon Flangeless\r\n握把塞：Kink Thrust\r\n龍頭：Kink Bold HRD 50mm\r\n頭碗：Mission Sealed Integrated(41.8 x 45)\r\n煞車把：Mission Token\r\n煞車線：Mission L3 Linear\r\n剎車器：Mission Cease V2\r\n曲柄：Mission Triumph 3pc Tubular Chromoly 170mm – 8 Spline\r\nB B：Sealed Mid 19mm\r\n踏板：Kink Hemlock 塑膠踏板', '鏈條：Mission 410\r\n前齒盤：Mission Rank 25T\r\n前花鼓：Mission Echo Unsealed 3/8″ Axle\r\n後花鼓：Mission Function Semi-Sealed Cassette 14mm\r\n後齒輪：9T\r\n前輪圈：Mission X7 36H\r\n後輪圈：Mission X7 36H\r\n座椅：Mission Goodman Combo\r\n座管：Mission Combo Steel Post\r\n座管束：Mission Slim\r\n前輪胎：Kink Sever 2.4\"\r\n後輪胎：Kink Sever 2.4\"\r\n重量：26磅6盎司', '10800', '特技車', '全車', 'KINK CURB ', '紫色', '適合身高：約165~180公分'),
+(147, 'https://images2.imgbox.com/3f/f4/hcqw7nxI_o.jpg', 'https://i.imgur.com/hlJ7mVm.jpg', 'https://i.imgur.com/kxi39Bm.jpg', 'I.H BMX KINK CURB BMX 場地車', '1', '車架材質：100％高張力鋼\r\n上管長度：20“\r\n前叉:Kink Lance 100％高張力鋼\r\n手把：Kink Human CC 8.75“100％高張力鋼\r\n手握： Kink Paragon Flangless\r\n握把塞：Kink Thrust\r\n龍頭： Mission Control TL 50mm\r\n頭碗：Standard 1 1/8″ Threadless\r\n煞車把：Mission Token\r\n煞車線：Mission L3 Linear\r\n煞車器： Mission Cease\r\n曲柄：Mission 3PC 管狀鉻鉬鋼 170MM - 8齒條\r\nBB:Unsealed American 19mm\r\n踏板：Kink Hemlock 塑膠踏板', '鏈條： Mission 410\r\n前齒盤：Mission Rank 25T\r\n前花鼓：Mission Access Unsealed 3/8″ Axle\r\n後花鼓：Mission Function Semi-Sealed Cassette 14mm\r\n後齒輪：9T\r\n前輪圈：Mission X7 36H\r\n後輪圈：Mission X7 36H\r\n座椅： Mission Goodman Combo\r\n座管：Mission Combo Steel Post\r\n座管束： Mission Slim\r\n前輪胎：Innova 2.4\"\r\n後輪胎：Innova 2.4\"\r\n重量：27磅7盎司', '9700', '特技車', '全車', 'KINK CURB ', '紅色', '適合身高：約165~180公分');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `prouductcarousel`
+--
+
+CREATE TABLE `prouductcarousel` (
+  `p_sid` int(11) NOT NULL COMMENT '商品流水號',
+  `p_photo` varchar(255) NOT NULL COMMENT '商品照片',
+  `p_name` varchar(255) NOT NULL COMMENT '商品名稱',
+  `quantity` varchar(255) NOT NULL COMMENT '數量',
+  `p_description` varchar(255) NOT NULL COMMENT '說明',
+  `p_price` varchar(255) NOT NULL COMMENT '價格',
+  `p_genre` varchar(255) NOT NULL COMMENT '商品類別',
+  `p_genre2` varchar(255) NOT NULL COMMENT '商品部件',
+  `p_brand` varchar(255) NOT NULL COMMENT '品牌',
+  `p_color` varchar(255) NOT NULL COMMENT '顏色',
+  `p_size` varchar(255) NOT NULL COMMENT '尺寸'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 資料表的匯出資料 `prouductcarousel`
+--
+
+INSERT INTO `prouductcarousel` (`p_sid`, `p_photo`, `p_name`, `quantity`, `p_description`, `p_price`, `p_genre`, `p_genre2`, `p_brand`, `p_color`, `p_size`) VALUES
+(1, 'http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png', '捷安特公路車', '1', '好車一台', '1000', '公路車', '全車', '捷安特', '藍色', '20吋'),
+(34, 'http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png', '捷安特公路車', '1', '好車一台', '1000', '公路車', '全車', '捷安特', '藍色', '20吋'),
+(41, 'http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png', '捷安特公路車', '1231', '1231', '12313', '公路車', '握把.龍頭', '123131', '1231', '12313');
+
+--
+-- 已匯出資料表的索引
+--
+
+--
+-- 資料表索引 `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`sid`),
+  ADD UNIQUE KEY `sid` (`sid`);
+
+--
+-- 資料表索引 `prouduct`
+--
+ALTER TABLE `prouduct`
+  ADD PRIMARY KEY (`p_sid`);
+
+--
+-- 資料表索引 `prouductcarousel`
+--
+ALTER TABLE `prouductcarousel`
+  ADD PRIMARY KEY (`p_sid`);
+
+--
+-- 在匯出的資料表使用 AUTO_INCREMENT
+--
+
+--
+-- 使用資料表 AUTO_INCREMENT `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `sid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- 使用資料表 AUTO_INCREMENT `prouduct`
+--
+ALTER TABLE `prouduct`
+  MODIFY `p_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品流水號', AUTO_INCREMENT=148;
+
+--
+-- 使用資料表 AUTO_INCREMENT `prouductcarousel`
+--
+ALTER TABLE `prouductcarousel`
+  MODIFY `p_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品流水號', AUTO_INCREMENT=42;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
