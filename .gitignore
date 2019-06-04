@@ -2,3 +2,5 @@
 \.prettierrc
 
 \.eslintrc
+
+\.DS_Store

@@ -33,8 +33,8 @@ router.use(cors(corsOptions));
 
 var mysqlConnection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "wang",
+  password: "admin",
   database: "the_wheel",
   multipleStatements: true
 });
