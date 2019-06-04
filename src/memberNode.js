@@ -245,7 +245,7 @@ router.put("/member/:id", upload.single("avatar"), (req, res) => {
           [body, req.params.id],
           (err, rows, fields) => {
             console.log(body);
-
+            if(rows){
             if (rows.changedRows == 0) {
               data.success = true;
               data.message.type = "warning";
@@ -262,12 +262,15 @@ router.put("/member/:id", upload.single("avatar"), (req, res) => {
               res.send(data);
               return;
             }
+          }
 
             if (err) {
+              data.message.info="E-mail重複使用,資料修改失敗"
               data.message.text = "E-mail重複使用,資料修改失敗";
               data.message.type = "danger";
               res.send(data);
               console.log(err);
+              return;
             }
           }
         );

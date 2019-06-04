@@ -1,0 +1,98 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- 主機: 127.0.0.1
+-- 產生時間： 2019 年 06 月 03 日 13:50
+-- 伺服器版本: 10.1.37-MariaDB
+-- PHP 版本： 7.1.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- 資料庫： `the_wheel`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `route`
+--
+
+CREATE TABLE `route` (
+  `r_sid` int(11) NOT NULL,
+  `r_name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_img` varchar(255) COLLATE utf8_bin NOT NULL,
+  `m_sid` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_intro` text COLLATE utf8_bin NOT NULL,
+  `r_time` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_tag` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_country` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_area` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_depart` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_arrive` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_time_added` varchar(255) COLLATE utf8_bin NOT NULL,
+  `r_on` tinyint(1) NOT NULL,
+  `r_l_num` int(11) NOT NULL,
+  `r_collect_num` int(11) NOT NULL,
+  `r_challenge_num` int(11) NOT NULL,
+  `r_map_info` longtext COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 資料表的匯出資料 `route`
+--
+
+INSERT INTO `route` (`r_sid`, `r_name`, `r_img`, `m_sid`, `r_intro`, `r_time`, `r_tag`, `r_country`, `r_area`, `r_depart`, `r_arrive`, `r_time_added`, `r_on`, `r_l_num`, `r_collect_num`, `r_challenge_num`, `r_map_info`) VALUES
+(308, '南唐斯大道', '304f20eb-253e-41ce-8ad1-02af9908901a.jpg', '1', '南唐斯大道是位在英國倫敦南方南唐斯國家公園內知名的一條單車祕境，在綿延100英里的路途中，放眼望去皆是純樸的鄉村風情，這段路線偶爾有些山坡起伏，但遊客們可以在鄉間的酒吧投宿，感受原野魅力。\r\n\r\n國家公園內有非常多獨特的地質景觀，南唐斯大道貫穿公園全境，也是唯一一條完全穿越國家公園的重要國家步道。', '4天', '長途', '英國', '英格蘭', '溫徹斯特', '伊斯特本', 'Mon, 03 Jun 2019 06:28:19 GMT', 0, 2, 66, 0, '[{\"geocoder_status\":\"OK\",\"partial_match\":true,\"place_id\":\"ChIJY3T5jVIFdEgRoe2oZl2GpGc\",\"types\":[\"locality\",\"political\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJCY_IX6x4c0gRjTozj4I7b1E\",\"types\":[\"administrative_area_level_2\",\"political\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJf5cWR0NY30cRwn257Oarqa4\",\"types\":[\"administrative_area_level_2\",\"political\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJDUivd6xw30cRBfbYkqOpZ_c\",\"types\":[\"locality\",\"political\"]}]'),
+(309, '南非花園大道', 'a26d7738-0d36-4581-8993-9009fff72b30.jpg', '1', '花園大道是南非東南部十分重要的景點，在超過長達130英里的旅途中，有著各種多樣性和令人驚豔的美景，從城市、海灣、山谷、森林等景緻應有盡有，由於此區域屬海洋性氣候，夏季溫和，冬季涼爽，是僅次於夏威夷氣候第二溫和的地方，十分令人熱愛。', '10天6時', '長途', '南非', '東開普省', '開普敦', '伊莉莎白港', 'Mon, 03 Jun 2019 06:37:58 GMT', 0, 1, 49, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ1-4miA9QzB0Rh6ooKPzhf2g\",\"types\":[\"locality\",\"political\"]},{\"geocoder_status\":\"OK\",\"partial_match\":true,\"place_id\":\"ChIJ841peohdzB0Ri6I2IY95juk\",\"types\":[\"administrative_area_level_1\",\"political\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJK9b_RQApex4RJkKJzTcj_YY\",\"types\":[\"locality\",\"political\"]}]'),
+(310, '日月潭', '6331eed5-8167-4c0b-b40a-fb160b212222.jpg', '1', '連結水社至向山遊客中心，其中400公尺長的「水上自行車道」更有水上行舟之感，途中經過水社壩、日月潭出水口、永結同心橋、向山眺望平台等景點。', '1天', '短途', '台灣', '南投縣', '水社碼頭', '雲品酒店', 'Mon, 03 Jun 2019 06:43:05 GMT', 0, 0, 127, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJu123aQ7WaDQRmiZQuTKv0IU\",\"types\":[\"establishment\",\"point_of_interest\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJX1-vy2vWaDQRduURwkKKl7I\",\"types\":[\"establishment\",\"lodging\",\"point_of_interest\"]}]'),
+(311, '安坡自行車道', '屏東.jpg', '1', '位於三地門鄉安坡村的自行車道是縣府最早開闢的第一條觀光自行車道，此以沿山公路的舊路開發而成，後來串聯了賽嘉、口社、青山、馬兒村，沿途景色迷人，又有原住民部落風采，蜿蜒的山路，一直都是車友最愛的路線之一。 馬兒村至安坡村為較為緩和的路段，從馬兒村入口有騎馬的戰士雕像，是沿途代表性的地標，經過常綠的楓林大道後進入寧靜的社區。 青山村內也有傳統建築及雕塑、彩繪，亦極富特色，還有知名的海神宮景點。', '3時', '短途', '台灣', '屏東縣', '屏東市三地門鄉', '賽嘉村賽嘉巷120號', 'Mon, 03 Jun 2019 06:46:33 GMT', 0, 0, 77, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJp0CM9Ng7bjQRynJKMvyv-Mc\",\"types\":[\"establishment\",\"point_of_interest\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJS4Lx9iQ5bjQRH4WFnMT6L5c\",\"types\":[\"street_address\"]}]'),
+(312, '白河竹門綠色自行車道', 'a12eafa7-5f38-4395-94ba-c4554933a065.jpg', '1', '一條往南90縣道往玉豐的玉豐綠色隧道，一條是92-1縣道往後壁的竹門綠色隧道，兩條綠色隧道兩側近90年老芒果樹夾道，成列芒果樹旁則是一畦一畦的蓮花田，夏天到訪，聞著芒果香、賞著荷花美，是台南白河竹門綠色隧道才有的享受！', '6時', '短途', '台灣', '台南', '台南市竹門國小', '台南市白河區蓮花公園', 'Mon, 03 Jun 2019 06:56:21 GMT', 0, 0, 239, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJoSeqABeObjQRY66q7p6hDoA\",\"types\":[\"establishment\",\"point_of_interest\",\"school\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJLxPOaD2ObjQRe6XwjCNjy9Y\",\"types\":[\"establishment\",\"park\",\"point_of_interest\"]}]'),
+(313, '金山線自行車道', '6586163a-a299-4c92-a893-0cb18a3b3bb6.jpg', '1', '全線沿著金山萬里的海濱前進，不但有動人的海灣景致和漁村風情，自行車道有部份路段以原木棧道的方式假設在海岸沙丘上，行走其上，優美自然的風光一路迎面而來，可說是五星級的自行車步道。', '1天', '短途', '台灣', '新北市', '新北市金山區磺港路 171-2 號', '新北市金山區海興路', 'Mon, 03 Jun 2019 07:01:39 GMT', 0, 0, 161, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJaZlEclxLXTQRMziswRRKWgg\",\"types\":[\"establishment\",\"park\",\"point_of_interest\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJTYsPpUtLXTQR_ZiyJTEb2tw\",\"types\":[\"route\"]}]'),
+(314, '南投武嶺', '31b10be0-ad06-4d04-9069-723d45ecdc67.png', '1', '武嶺，舊名佐久間峠、南嶺，海拔3275米，是台灣公路最高點，位於台14甲線31.5公里處，在太魯閣國家公園西境，為合歡山森林遊樂區一處景點，行政區劃屬南投縣仁愛鄉。在武嶺的東面建有一座觀景台，供遊人眺望遠近風景。由於地處偏僻，少有光害，也是夜間觀星的良好地點。武嶺的東邊有一座視野良好的觀景台，是民眾登高望遠、觀雲、眺望山林及夜間觀星的地方，也是民眾來武嶺朝聖的拍攝景點之一。而對於許多單車好手來說，也是心目中最有挑戰的目標，因為征服了武嶺就等同於征服了整個東南亞的公路。', '2天', '長途', '台灣', '南投', '南投清境農場', '武嶺', 'Mon, 03 Jun 2019 07:05:24 GMT', 0, 1, 502, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJd6tSARHCaDQRHFr7LOLpHGo\",\"types\":[\"establishment\",\"lodging\",\"point_of_interest\",\"travel_agency\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJY3PZLmfraDQRqWBvvwikdSY\",\"types\":[\"bus_station\",\"establishment\",\"point_of_interest\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJte6zETiTaDQRA6gtQKdhV8k\",\"types\":[\"establishment\",\"point_of_interest\"]}]'),
+(315, '冬山河親水公園自行車道', '692500bc-6515-43fe-b83f-1fe606c50764.jpg', '1', '冬山河自行車道，從冬山火車站為起點一直到親水公園附近五結大閘門之間，是一條風景優美、車道完整，非常適合親子騎車的自行車道，因此決定帶著寶妹的好朋友們一起來騎車，上一次來因為帶著長輩又加上下雨，沒有騎完全程，今天的天氣非常的舒適，因此，我們決定挑戰來回', '3時', '短途', '台灣', '宜蘭縣', '冬山火車站', '冬山河親水公園', 'Mon, 03 Jun 2019 07:10:48 GMT', 0, 0, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJp9e3XzTmZzQRqKiysGgV6M8\",\"types\":[\"establishment\",\"point_of_interest\",\"train_station\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ024RSlXvZzQR9_tIyolRXUc\",\"types\":[\"establishment\",\"park\",\"point_of_interest\"]}]'),
+(317, '本州縱斷', '5371021a-631b-452d-b7bd-d2b89785822b.jpg', '1', '單車行程從東京的葛西臨海公園開始\r\n避開繁忙的主要幹道,延着荒川河旁往上游騎乘,沿途欣賞日本當地民俗風景', '20天', '長途', '日本', '東京都', '葛西臨海公園', '直江津駅', 'Mon, 03 Jun 2019 07:26:42 GMT', 0, 1, 49, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJB3qyjVF9GGARE1Gz1IicoBY\",\"types\":[\"establishment\",\"park\",\"point_of_interest\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJmUQ05l2AHWARyJIoB3SpKPE\",\"types\":[\"locality\",\"political\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ_efj5hJ49l8RmaekPhE8hxg\",\"types\":[\"establishment\",\"point_of_interest\",\"train_station\",\"transit_station\"]}]'),
+(319, '碧潭自行車道', 'd69889b4-995e-45ed-af7f-a9d7074b4bd8.jpg', '1', '短短的週休二日  想出去玩  又怕沒時間運動？\r\n\r\n趁著天氣好  來河濱公園騎單車是不錯的選擇\r\n\r\n兼顧休閒與運動又可以欣賞美麗的風景', '3時', '短途', '台灣', '新北市', '陽光橋', '碧潭', 'Mon, 03 Jun 2019 10:52:23 GMT', 0, 0, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJbUQSNxECaDQRaKkPldkACS0\",\"types\":[\"route\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJLY_oiYcBaDQRCELSB3LZxZk\",\"types\":[\"establishment\",\"point_of_interest\"]}]'),
+(320, '百內國家公園', 'b0fef379-056e-46fe-a931-c515d5cceeb0.jpg', '1', '百內國家公園是智利南部著名的國家公園，也是重要觀光景點，這個地方就好比南半球的優勝美地，能遠眺雪山、近距離欣賞融冰美景、也能感受翠綠青草地的浪漫，冰河、湖泊、瀑布、森林等多樣性景緻，彷彿這兒就是仙境，騎單車絕對是幸福享受。', '7天', '長途', '智利', '麥哲倫-智利南極大區', '托雷德佩恩', '百內國家公園', 'Mon, 03 Jun 2019 10:56:37 GMT', 0, 0, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJmbm3Z8I3pb0Re9OqJoNti34\",\"types\":[\"locality\",\"political\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJB6_bgwEbpb0RWM4aRVcmn70\",\"types\":[\"establishment\",\"park\",\"point_of_interest\"]}]'),
+(321, '金色水岸自行車道', 'f89e5753-2fd2-4d99-b6a2-b6961acfc21f.jpg', '1', '因為淡水河面映著夕陽所反射出的金色柔柔波光，因此這條自行車道被取名為「金色水岸自行車道」，沿線美麗的風景與知名的觀光景點，使其美名不脛而走。單車遊客能飽覽淡水的人文與自然景觀，路況多屬平坦路段、騎乘時舒適度佳，適合一般大眾攜家帶眷在此騎車及紓解壓力，部分路段樹蔭與遮蔽物較少，提醒單車遊客一定要做好防曬的準備。關渡站 、竹圍站 、紅樹林站都開放非摺疊式自行車進出，自己帶單車的遊客記得從這幾個捷運站出入喔。', '10時', '短途', '台灣', '新北市', '捷運淡水站', '淡水漁人碼頭', 'Mon, 03 Jun 2019 11:02:58 GMT', 0, 2, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ3YC9glilQjQRxvedF6PFWVc\",\"types\":[\"establishment\",\"point_of_interest\",\"subway_station\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJOboJaVqlQjQRxwuIT4kvkKQ\",\"types\":[\"establishment\",\"point_of_interest\",\"route\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJsY5ajkilQjQRcZYS_Bsuj5M\",\"types\":[\"establishment\",\"point_of_interest\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJY0IVMS6lQjQRoEDkhKz2QTI\",\"types\":[\"establishment\",\"point_of_interest\",\"transit_station\"]}]'),
+(322, '舊草嶺環狀線自行車道', 'e9e85d1e-a0a9-41c1-af57-d33ba75fbee2.jpg', '1', '台灣東北角從基隆到宜蘭的海岸線，有著全台灣最美的海岸風景，沿著海岸，迎著海風悠遊的欣賞碧藍大海及大自然的鬼斧神工之作，除此之外騎著單車在舊草嶺環狀自行車道前進，沿途上景色依山傍水風景宜人，在斜陽、海風中感受不一樣的寧靜純樸。', '1天', '短途', '台北', '新北市', '福隆火車站', '舊草嶺隧道', 'Mon, 03 Jun 2019 11:07:50 GMT', 0, 0, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJJ61PgVRcXTQR1KE8evbAIxw\",\"types\":[\"establishment\",\"point_of_interest\",\"train_station\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJmUjPHA1dXTQRB-tXTydBtUo\",\"types\":[\"establishment\",\"point_of_interest\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJmWtqgIJnXTQRGWfG25olU-8\",\"types\":[\"establishment\",\"point_of_interest\",\"premise\"]}]'),
+(323, '樹林山佳鐵道風情', 'a078ec6d-6448-402f-88a8-cc983aa37475.jpg', '1', '從樹林、山佳至鶯歌，很適合搭台鐵到定點，再租台Youbike沿著河濱自行車道細細遊逛，途中有許多令人耳目一新的景點，讓我們帶著水、保暖裝備與一顆雀躍的心，昂首出發吧！」早上先搭台鐵至「樹林車站」，再轉公車至全台展示國防部陸海空武器規模最大的「武器公園」，認識這些曾保衛國家安全的雄偉裝備；之後搭公車至「南樹林火車站」化身鐵道迷，近距離欣賞各式列車停靠的壯觀景象；並租台腳踏車騎至「鹿角溪生態濕地」，除了學習濕地教育，還能在這座最棒的戶外自然生態教室認識鳥類、昆蟲等數百種生物；隨後繼續前行至有百年歷史，近期重現日治礦業的「山佳百年車站」', '1天', '短途', '台北', '新北市', '樹林車站', '山佳車站', 'Mon, 03 Jun 2019 11:11:30 GMT', 0, 1, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ5YeRaT4daDQR0BS-IMez484\",\"types\":[\"establishment\",\"point_of_interest\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ_fS0yVAcaDQRENcWBNMlyiQ\",\"types\":[\"establishment\",\"point_of_interest\",\"train_station\",\"transit_station\"]}]'),
+(325, '大漢溪鶯歌單車一日遊', '42eeecf1-c2ec-4f97-a633-0a7f6f0db8e8.jpg', '1', '結合自然生態、藝術DIY、鐵馬運動、夢幻夜景的一日小旅行。」早上從「八里左岸自行車道」開始，騎著自行車遊歷宛如生態教室的挖子尾紅樹林自然保護區、史前館藏豐富的十三行博物館，再回八里渡船頭享用特色美食孔雀蛤與甜甜圈；', '1天', '短途', '台灣', '新北市', '淡水捷運站', '鶯歌老街', 'Mon, 03 Jun 2019 11:15:51 GMT', 0, 0, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ3YC9glilQjQRxvedF6PFWVc\",\"types\":[\"establishment\",\"point_of_interest\",\"subway_station\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJs43LrqseaDQR3h2NVgztINI\",\"types\":[\"establishment\",\"point_of_interest\"]}]'),
+(326, '大漢溪板橋新莊', '34a9f4ea-e848-4237-9452-ccb4ba3ae996.jpg', '1', '在日常的旅途中，往往隱藏著一些令人驚喜的小確幸。騎著自行車或漫步遊逛，於徐徐微風中，走訪美麗荷花池、探索透明天空步道、在充滿歐風的白色建築園區參加藝文展覽與活動。」早上從「大漢溪自行車道」開始，先租台YOUBIKE前往板橋最接近大自然的地區新海人工濕地', '1天', '短途', '台灣', '新北市', '板橋車站', '新月橋', 'Mon, 03 Jun 2019 11:19:43 GMT', 0, 1, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJFxRFQhmoQjQRpQVZ5mKVZnY\",\"types\":[\"establishment\",\"point_of_interest\",\"train_station\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJXQkl4AyoQjQRSfdnL5L2yXo\",\"types\":[\"establishment\",\"park\",\"point_of_interest\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJN22ZVXKoQjQRh13tDx3eqIk\",\"types\":[\"establishment\",\"point_of_interest\"]}]'),
+(327, '八里一日遊', '2150fe66-9e2e-4a05-b675-adf68b9be8c5.jpg', '1', '八里變得不一樣了！充滿異國風的BALI大字地標、讓孩子玩到不想回家的樹屋溜滑梯、夜晚超浪漫的夢幻歐式涼亭，經過重新整理的八里變得既童趣又浪漫，快帶全家週休二日一起到八里去走走！', '1天', '短途', '台灣', '新北市', '捷運關渡站', '八里左岸自行車道', 'Mon, 03 Jun 2019 11:22:09 GMT', 0, 0, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ8_Fu3XKvQjQRxu6AnXQkKmQ\",\"types\":[\"establishment\",\"point_of_interest\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ_3VUnGilQjQR7qp73ndM8Cg\",\"types\":[\"establishment\",\"point_of_interest\"]}]'),
+(328, '島波海道', 'e7a11fc0-287d-4ea2-8661-a00fb8dc351b.jpg', '1', '島波海道全長約70公里連結四國愛媛縣的今治市與本州廣島縣的尾道市，以九座橋串聯六個島嶼而建成，是日本本州與四國間唯一可以全程通行自行車的道路，被米其林綠色指南及CNN選為世界最棒的單車道之一、也被譽為「日本最美自行車道」，還跟台灣日月潭自行車道締結為姊妹車道，沿途風光明媚，尤其是今治市與大島間的「來島海峽大橋」是最精華、最壯麗的一段，是熱愛自行車運動的朋友一生一定要來一次的自行車聖地。', '1天', '長途', '日本', '', '今治車站', '來島海峽展望館', 'Mon, 03 Jun 2019 11:27:54 GMT', 0, 0, 0, 0, '[{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJyYp5bFk6UDUR1E-NO2tLIUU\",\"types\":[\"establishment\",\"point_of_interest\",\"train_station\",\"transit_station\"]},{\"geocoder_status\":\"OK\",\"place_id\":\"ChIJ78pzDHc5UDURLRAQpKBSpEU\",\"types\":[\"establishment\",\"point_of_interest\"]}]');
+
+--
+-- 已匯出資料表的索引
+--
+
+--
+-- 資料表索引 `route`
+--
+ALTER TABLE `route`
+  ADD PRIMARY KEY (`r_sid`);
+
+--
+-- 在匯出的資料表使用 AUTO_INCREMENT
+--
+
+--
+-- 使用資料表 AUTO_INCREMENT `route`
+--
+ALTER TABLE `route`
+  MODIFY `r_sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
